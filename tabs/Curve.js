@@ -125,36 +125,6 @@
         DANGER: "danger",
     };
 
-    /*
-     * Copyright 2015 Palantir Technologies, Inc. All rights reserved.
-     *
-     * Licensed under the Apache License, Version 2.0 (the "License");
-     * you may not use this file except in compliance with the License.
-     * You may obtain a copy of the License at
-     *
-     *     http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Unless required by applicable law or agreed to in writing, software
-     * distributed under the License is distributed on an "AS IS" BASIS,
-     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     * See the License for the specific language governing permissions and
-     * limitations under the License.
-     */
-    var Position = {
-        BOTTOM: "bottom",
-        BOTTOM_LEFT: "bottom-left",
-        BOTTOM_RIGHT: "bottom-right",
-        LEFT: "left",
-        LEFT_BOTTOM: "left-bottom",
-        LEFT_TOP: "left-top",
-        RIGHT: "right",
-        RIGHT_BOTTOM: "right-bottom",
-        RIGHT_TOP: "right-top",
-        TOP: "top",
-        TOP_LEFT: "top-left",
-        TOP_RIGHT: "top-right",
-    };
-
     var NS = process.env.BLUEPRINT_NAMESPACE || process.env.REACT_APP_BLUEPRINT_NAMESPACE || "bp3";
     // modifiers
     var ACTIVE = NS + "-active";
@@ -162,12 +132,10 @@
     var ALIGN_RIGHT = NS + "-align-right";
     var DISABLED = NS + "-disabled";
     var FILL = NS + "-fill";
-    var FIXED = NS + "-fixed";
     var LARGE = NS + "-large";
     var LOADING = NS + "-loading";
     var MINIMAL = NS + "-minimal";
     var OUTLINED = NS + "-outlined";
-    var ROUND = NS + "-round";
     var SMALL = NS + "-small";
     var VERTICAL = NS + "-vertical";
     intentClass(Intent.PRIMARY);
@@ -175,16 +143,16 @@
     intentClass(Intent.WARNING);
     intentClass(Intent.DANGER);
     var BUTTON = NS + "-button";
-    var BUTTON_GROUP = BUTTON + "-group";
     var BUTTON_SPINNER = BUTTON + "-spinner";
     var BUTTON_TEXT = BUTTON + "-text";
-    var CONTROL_GROUP = NS + "-control-group";
-    var DIVIDER = NS + "-divider";
-    var INPUT = NS + "-input";
-    var INPUT_GROUP = INPUT + "-group";
-    var INPUT_LEFT_CONTAINER = INPUT + "-left-container";
-    var INPUT_ACTION = INPUT + "-action";
-    var NUMERIC_INPUT = NS + "-numeric-input";
+    var SLIDER = NS + "-slider";
+    var SLIDER_AXIS = SLIDER + "-axis";
+    var SLIDER_HANDLE = SLIDER + "-handle";
+    var SLIDER_LABEL = SLIDER + "-label";
+    var SLIDER_TRACK = SLIDER + "-track";
+    var SLIDER_PROGRESS = SLIDER + "-progress";
+    var START = NS + "-start";
+    var END = NS + "-end";
     var SPINNER = NS + "-spinner";
     var SPINNER_ANIMATION = SPINNER + "-animation";
     var SPINNER_HEAD = SPINNER + "-head";
@@ -216,6 +184,61 @@
     }
 
     /*
+     * Copyright 2017 Palantir Technologies, Inc. All rights reserved.
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    /**
+     * Returns true if the arrays are equal. Elements will be shallowly compared by
+     * default, or they will be compared using the custom `compare` function if one
+     * is provided.
+     */
+    function arraysEqual(arrA, arrB, compare) {
+        if (compare === void 0) { compare = function (a, b) { return a === b; }; }
+        // treat `null` and `undefined` as the same
+        if (arrA == null && arrB == null) {
+            return true;
+        }
+        else if (arrA == null || arrB == null || arrA.length !== arrB.length) {
+            return false;
+        }
+        else {
+            return arrA.every(function (a, i) { return compare(a, arrB[i]); });
+        }
+    }
+
+    /*
+     * Copyright 2020 Palantir Technologies, Inc. All rights reserved.
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    /** Returns whether the value is a function. Acts as a type guard. */
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    function isFunction(value) {
+        return typeof value === "function";
+    }
+
+    /*
      * Copyright 2015 Palantir Technologies, Inc. All rights reserved.
      *
      * Licensed under the Apache License, Version 2.0 (the "License");
@@ -232,19 +255,25 @@
      */
     var ns = "[Blueprint]";
     var CLAMP_MIN_MAX = ns + " clamp: max cannot be less than min";
-    var INPUT_WARN_LEFT_ELEMENT_LEFT_ICON_MUTEX = ns + " <InputGroup> leftElement and leftIcon prop are mutually exclusive, with leftElement taking priority.";
-    var NUMERIC_INPUT_MIN_MAX = ns + " <NumericInput> requires min to be no greater than max if both are defined.";
-    var NUMERIC_INPUT_MINOR_STEP_SIZE_BOUND = ns + " <NumericInput> requires minorStepSize to be no greater than stepSize.";
-    var NUMERIC_INPUT_MAJOR_STEP_SIZE_BOUND = ns + " <NumericInput> requires stepSize to be no greater than majorStepSize.";
-    var NUMERIC_INPUT_MINOR_STEP_SIZE_NON_POSITIVE = ns + " <NumericInput> requires minorStepSize to be strictly greater than zero.";
-    var NUMERIC_INPUT_MAJOR_STEP_SIZE_NON_POSITIVE = ns + " <NumericInput> requires majorStepSize to be strictly greater than zero.";
-    var NUMERIC_INPUT_STEP_SIZE_NON_POSITIVE = ns + " <NumericInput> requires stepSize to be strictly greater than zero.";
-    var NUMERIC_INPUT_CONTROLLED_VALUE_INVALID = ns + " <NumericInput> controlled value prop does not adhere to stepSize, min, and/or max constraints.";
+    var SLIDER_ZERO_STEP = ns + " <Slider> stepSize must be greater than zero.";
+    var SLIDER_ZERO_LABEL_STEP = ns + " <Slider> labelStepSize must be greater than zero.";
+    var MULTISLIDER_INVALID_CHILD = ns + " <MultiSlider> children must be <SliderHandle>s or <SliderTrackStop>s";
+    var MULTISLIDER_WARN_LABEL_STEP_SIZE_LABEL_VALUES_MUTEX = ns +
+        " <MultiSlider> labelStepSize and labelValues prop are mutually exclusive, with labelStepSize taking priority.";
     var SPINNER_WARN_CLASSES_SIZE = ns + " <Spinner> Classes.SMALL/LARGE are ignored if size prop is set.";
 
     /** Returns whether `process.env.NODE_ENV` exists and equals `env`. */
     function isNodeEnv(env) {
         return typeof process !== "undefined" && process.env && process.env.NODE_ENV === env;
+    }
+    /**
+     * Returns true if the two numbers are within the given tolerance of each other.
+     * This is useful to correct for floating point precision issues, less useful
+     * for integers.
+     */
+    function approxEqual(a, b, tolerance) {
+        if (tolerance === void 0) { tolerance = 0.00001; }
+        return Math.abs(a - b) <= tolerance;
     }
     /**
      * Clamps the given number between min and max values. Returns value if within
@@ -287,6 +316,23 @@
                 Array.isArray(node) &&
                 // only recurse one level through arrays, for performance
                 (node.length === 0 || node.every(function (n) { return isReactNodeEmpty(n, true); }))));
+    }
+    /**
+     * Returns true if the given JSX element matches the given component type.
+     *
+     * NOTE: This function only checks equality of `displayName` for performance and
+     * to tolerate multiple minor versions of a component being included in one
+     * application bundle.
+     *
+     * @param element JSX element in question
+     * @param ComponentType desired component type of element
+     */
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    function isElementOfType(element, ComponentType) {
+        return (element != null &&
+            element.type != null &&
+            element.type.displayName != null &&
+            element.type.displayName === ComponentType.displayName);
     }
 
     function unwrapExports (x) {
@@ -484,7 +530,9 @@
 
     var ENTER = 13;
     var SPACE = 32;
+    var ARROW_LEFT = 37;
     var ARROW_UP = 38;
+    var ARROW_RIGHT = 39;
     var ARROW_DOWN = 40;
     /** Returns whether the key code is `enter` or `space`, the two keys that can click a button. */
     function isKeyboardClick(keyCode) {
@@ -706,12 +754,6 @@
 
     unwrapExports(reactLifecyclesCompat_cjs);
     var reactLifecyclesCompat_cjs_1 = reactLifecyclesCompat_cjs.polyfill;
-
-    var CAMERA = "camera";
-    var HORIZONTAL_DISTRIBUTION = "horizontal-distribution";
-    var STOPWATCH = "stopwatch";
-    var VERTICAL_DISTRIBUTION = "vertical-distribution";
-    var VIDEO = "video";
 
     /*
      * Copyright 2017 Palantir Technologies, Inc. All rights reserved.
@@ -2022,769 +2064,613 @@
         return AnchorButton;
     })(AbstractButton));
 
-    // this component is simple enough that tests would be purely tautological.
-    /* istanbul ignore next */
-    var ButtonGroup = /** @class */ (function (_super) {
-        __extends(ButtonGroup, _super);
-        function ButtonGroup() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        ButtonGroup.prototype.render = function () {
-            var _a;
-            var _b = this.props, alignText = _b.alignText, className = _b.className, fill = _b.fill, minimal = _b.minimal, large = _b.large, vertical = _b.vertical, htmlProps = __rest(_b, ["alignText", "className", "fill", "minimal", "large", "vertical"]);
-            var buttonGroupClasses = classnames(BUTTON_GROUP, (_a = {},
-                _a[FILL] = fill,
-                _a[LARGE] = large,
-                _a[MINIMAL] = minimal,
-                _a[VERTICAL] = vertical,
-                _a), alignmentClass(alignText), className);
-            return (React.createElement("div", __assign({}, htmlProps, { className: buttonGroupClasses }), this.props.children));
-        };
-        ButtonGroup.displayName = DISPLAYNAME_PREFIX + ".ButtonGroup";
-        ButtonGroup = __decorate([
-            reactLifecyclesCompat_cjs_1
-        ], ButtonGroup);
-        return ButtonGroup;
-    }(AbstractPureComponent2));
+    /*
+     * Copyright 2018 Palantir Technologies, Inc. All rights reserved.
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    var HandleType = {
+        /** A full handle appears as a small square. */
+        FULL: "full",
+        /** A start handle appears as the left or top half of a square. */
+        START: "start",
+        /** An end handle appears as the right or bottom half of a square. */
+        END: "end",
+    };
+    var HandleInteractionKind = {
+        /** Locked handles prevent other handles from being dragged past then. */
+        LOCK: "lock",
+        /** Push handles move overlapping handles with them as they are dragged. */
+        PUSH: "push",
+        /**
+         * Handles marked "none" are not interactive and do not appear in the UI.
+         * They serve only to break the track into subsections that can be colored separately.
+         */
+        NONE: "none",
+    };
 
-    // this component is simple enough that tests would be purely tautological.
-    /* istanbul ignore next */
-    var Divider = /** @class */ (function (_super) {
-        __extends(Divider, _super);
-        function Divider() {
-            return _super !== null && _super.apply(this, arguments) || this;
+    /*
+     * Copyright 2018 Palantir Technologies, Inc. All rights reserved.
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    /** Helper function for formatting ratios as CSS percentage values. */
+    function formatPercentage(ratio) {
+        return (ratio * 100).toFixed(2) + "%";
+    }
+    /**
+     * Mutates the values array by filling all the values between start and end index (inclusive) with the fill value.
+     */
+    function fillValues(values, startIndex, endIndex, fillValue) {
+        var inc = startIndex < endIndex ? 1 : -1;
+        for (var index = startIndex; index !== endIndex + inc; index += inc) {
+            values[index] = fillValue;
         }
-        Divider.prototype.render = function () {
-            var _a = this.props, className = _a.className, _b = _a.tagName, tagName = _b === void 0 ? "div" : _b, htmlProps = __rest(_a, ["className", "tagName"]);
-            var classes = classnames(DIVIDER, className);
-            return React.createElement(tagName, __assign(__assign({}, htmlProps), { className: classes }));
-        };
-        Divider.displayName = DISPLAYNAME_PREFIX + ".Divider";
-        Divider = __decorate([
-            reactLifecyclesCompat_cjs_1
-        ], Divider);
-        return Divider;
-    }(AbstractPureComponent2));
+    }
+    /**
+     * Returns the minimum element of an array as determined by comparing the results of calling the arg function on each
+     * element of the array. The function will only be called once per element.
+     */
+    function argMin(values, argFn) {
+        if (values.length === 0) {
+            return undefined;
+        }
+        var minValue = values[0];
+        var minArg = argFn(minValue);
+        for (var index = 1; index < values.length; index++) {
+            var value = values[index];
+            var arg = argFn(value);
+            if (arg < minArg) {
+                minValue = value;
+                minArg = arg;
+            }
+        }
+        return minValue;
+    }
 
-    // this component is simple enough that tests would be purely tautological.
-    /* istanbul ignore next */
-    var ControlGroup = /** @class */ (function (_super) {
-        __extends(ControlGroup, _super);
-        function ControlGroup() {
-            return _super !== null && _super.apply(this, arguments) || this;
+    // props that require number values, for validation
+    var NUMBER_PROPS = ["max", "min", "stepSize", "tickSize", "value"];
+    /** Internal component for a Handle with click/drag/keyboard logic to determine a new value. */
+    var Handle = /** @class */ (function (_super) {
+        __extends(Handle, _super);
+        function Handle() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.state = {
+                isMoving: false,
+            };
+            _this.handleElement = null;
+            _this.refHandlers = {
+                handle: function (el) { return (_this.handleElement = el); },
+            };
+            _this.beginHandleMovement = function (event) {
+                document.addEventListener("mousemove", _this.handleHandleMovement);
+                document.addEventListener("mouseup", _this.endHandleMovement);
+                _this.setState({ isMoving: true });
+                _this.changeValue(_this.clientToValue(_this.mouseEventClientOffset(event)));
+            };
+            _this.beginHandleTouchMovement = function (event) {
+                document.addEventListener("touchmove", _this.handleHandleTouchMovement);
+                document.addEventListener("touchend", _this.endHandleTouchMovement);
+                document.addEventListener("touchcancel", _this.endHandleTouchMovement);
+                _this.setState({ isMoving: true });
+                _this.changeValue(_this.clientToValue(_this.touchEventClientOffset(event)));
+            };
+            _this.getStyleProperties = function () {
+                if (_this.handleElement == null) {
+                    return {};
+                }
+                // The handle midpoint of RangeSlider is actually shifted by a margin to
+                // be on the edge of the visible handle element. Because the midpoint
+                // calculation does not take this margin into account, we instead
+                // measure the long side (which is equal to the short side plus the
+                // margin).
+                var _a = _this.props, _b = _a.min, min = _b === void 0 ? 0 : _b, tickSizeRatio = _a.tickSizeRatio, value = _a.value, vertical = _a.vertical;
+                var handleMidpoint = _this.getHandleMidpointAndOffset(_this.handleElement, true).handleMidpoint;
+                var offsetRatio = (value - min) * tickSizeRatio;
+                var offsetCalc = "calc(" + formatPercentage(offsetRatio) + " - " + handleMidpoint + "px)";
+                return vertical ? { bottom: offsetCalc } : { left: offsetCalc };
+            };
+            _this.endHandleMovement = function (event) {
+                _this.handleMoveEndedAt(_this.mouseEventClientOffset(event));
+            };
+            _this.endHandleTouchMovement = function (event) {
+                _this.handleMoveEndedAt(_this.touchEventClientOffset(event));
+            };
+            _this.handleMoveEndedAt = function (clientPixel) {
+                var _a, _b;
+                _this.removeDocumentEventListeners();
+                _this.setState({ isMoving: false });
+                // always invoke onRelease; changeValue may call onChange if value is different
+                var finalValue = _this.changeValue(_this.clientToValue(clientPixel));
+                (_b = (_a = _this.props).onRelease) === null || _b === void 0 ? void 0 : _b.call(_a, finalValue);
+            };
+            _this.handleHandleMovement = function (event) {
+                _this.handleMovedTo(_this.mouseEventClientOffset(event));
+            };
+            _this.handleHandleTouchMovement = function (event) {
+                _this.handleMovedTo(_this.touchEventClientOffset(event));
+            };
+            _this.handleMovedTo = function (clientPixel) {
+                if (_this.state.isMoving && !_this.props.disabled) {
+                    _this.changeValue(_this.clientToValue(clientPixel));
+                }
+            };
+            _this.handleKeyDown = function (event) {
+                var _a = _this.props, stepSize = _a.stepSize, value = _a.value;
+                // HACKHACK: https://github.com/palantir/blueprint/issues/4165
+                /* eslint-disable-next-line deprecation/deprecation */
+                var which = event.which;
+                if (which === ARROW_DOWN || which === ARROW_LEFT) {
+                    _this.changeValue(value - stepSize);
+                    // this key event has been handled! prevent browser scroll on up/down
+                    event.preventDefault();
+                }
+                else if (which === ARROW_UP || which === ARROW_RIGHT) {
+                    _this.changeValue(value + stepSize);
+                    event.preventDefault();
+                }
+            };
+            _this.handleKeyUp = function (event) {
+                var _a, _b;
+                // HACKHACK: https://github.com/palantir/blueprint/issues/4165
+                /* eslint-disable-next-line deprecation/deprecation */
+                if ([ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT].indexOf(event.which) >= 0) {
+                    (_b = (_a = _this.props).onRelease) === null || _b === void 0 ? void 0 : _b.call(_a, _this.props.value);
+                }
+            };
+            return _this;
         }
-        ControlGroup.prototype.render = function () {
-            var _a;
-            var _b = this.props, children = _b.children, className = _b.className, fill = _b.fill, vertical = _b.vertical, htmlProps = __rest(_b, ["children", "className", "fill", "vertical"]);
-            var rootClasses = classnames(CONTROL_GROUP, (_a = {},
-                _a[FILL] = fill,
-                _a[VERTICAL] = vertical,
-                _a), className);
-            return (React.createElement("div", __assign({}, htmlProps, { className: rootClasses }), children));
+        Handle.prototype.componentDidMount = function () {
+            // The first time this component renders, it has no ref to the handle and thus incorrectly centers the handle.
+            // Therefore, on the first mount, force a re-render to center the handle with the ref'd component.
+            this.forceUpdate();
         };
-        ControlGroup.displayName = DISPLAYNAME_PREFIX + ".ControlGroup";
-        ControlGroup = __decorate([
+        Handle.prototype.render = function () {
+            var _a;
+            var _b = this.props, className = _b.className, disabled = _b.disabled, label = _b.label;
+            var isMoving = this.state.isMoving;
+            return (React.createElement("span", { className: classnames(SLIDER_HANDLE, (_a = {}, _a[ACTIVE] = isMoving, _a), className), onKeyDown: disabled ? undefined : this.handleKeyDown, onKeyUp: disabled ? undefined : this.handleKeyUp, onMouseDown: disabled ? undefined : this.beginHandleMovement, onTouchStart: disabled ? undefined : this.beginHandleTouchMovement, ref: this.refHandlers.handle, style: this.getStyleProperties(), tabIndex: 0 }, label == null ? null : React.createElement("span", { className: SLIDER_LABEL }, label)));
+        };
+        Handle.prototype.componentWillUnmount = function () {
+            this.removeDocumentEventListeners();
+        };
+        /** Convert client pixel to value between min and max. */
+        Handle.prototype.clientToValue = function (clientPixel) {
+            var _a = this.props, stepSize = _a.stepSize, tickSize = _a.tickSize, value = _a.value, vertical = _a.vertical;
+            if (this.handleElement == null) {
+                return value;
+            }
+            // #1769: this logic doesn't work perfectly when the tick size is
+            // smaller than the handle size; it may be off by a tick or two.
+            var clientPixelNormalized = vertical ? window.innerHeight - clientPixel : clientPixel;
+            var handleCenterPixel = this.getHandleElementCenterPixel(this.handleElement);
+            var pixelDelta = clientPixelNormalized - handleCenterPixel;
+            if (isNaN(pixelDelta)) {
+                return value;
+            }
+            // convert pixels to range value in increments of `stepSize`
+            return value + Math.round(pixelDelta / (tickSize * stepSize)) * stepSize;
+        };
+        Handle.prototype.mouseEventClientOffset = function (event) {
+            return this.props.vertical ? event.clientY : event.clientX;
+        };
+        Handle.prototype.touchEventClientOffset = function (event) {
+            var touch = event.changedTouches[0];
+            return this.props.vertical ? touch.clientY : touch.clientX;
+        };
+        Handle.prototype.validateProps = function (props) {
+            for (var _i = 0, NUMBER_PROPS_1 = NUMBER_PROPS; _i < NUMBER_PROPS_1.length; _i++) {
+                var prop = NUMBER_PROPS_1[_i];
+                if (typeof props[prop] !== "number") {
+                    throw new Error("[Blueprint] <Handle> requires number value for " + prop + " prop");
+                }
+            }
+        };
+        /** Clamp value and invoke callback if it differs from current value */
+        Handle.prototype.changeValue = function (newValue, callback) {
+            if (callback === void 0) { callback = this.props.onChange; }
+            newValue = this.clamp(newValue);
+            if (!isNaN(newValue) && this.props.value !== newValue) {
+                callback === null || callback === void 0 ? void 0 : callback(newValue);
+            }
+            return newValue;
+        };
+        /** Clamp value between min and max props */
+        Handle.prototype.clamp = function (value) {
+            return clamp(value, this.props.min, this.props.max);
+        };
+        Handle.prototype.getHandleElementCenterPixel = function (handleElement) {
+            var _a = this.getHandleMidpointAndOffset(handleElement), handleMidpoint = _a.handleMidpoint, handleOffset = _a.handleOffset;
+            return handleOffset + handleMidpoint;
+        };
+        Handle.prototype.getHandleMidpointAndOffset = function (handleElement, useOppositeDimension) {
+            if (useOppositeDimension === void 0) { useOppositeDimension = false; }
+            if (handleElement == null) {
+                return { handleMidpoint: 0, handleOffset: 0 };
+            }
+            var vertical = this.props.vertical;
+            // getBoundingClientRect().height includes border size; clientHeight does not.
+            var handleRect = handleElement.getBoundingClientRect();
+            var sizeKey = vertical
+                ? useOppositeDimension
+                    ? "width"
+                    : "height"
+                : useOppositeDimension
+                    ? "height"
+                    : "width";
+            // "bottom" value seems to be consistently incorrect, so explicitly
+            // calculate it using the window offset instead.
+            var handleOffset = vertical ? window.innerHeight - (handleRect.top + handleRect[sizeKey]) : handleRect.left;
+            return { handleMidpoint: handleRect[sizeKey] / 2, handleOffset: handleOffset };
+        };
+        Handle.prototype.removeDocumentEventListeners = function () {
+            document.removeEventListener("mousemove", this.handleHandleMovement);
+            document.removeEventListener("mouseup", this.endHandleMovement);
+            document.removeEventListener("touchmove", this.handleHandleTouchMovement);
+            document.removeEventListener("touchend", this.endHandleTouchMovement);
+            document.removeEventListener("touchcancel", this.endHandleTouchMovement);
+        };
+        Handle.displayName = DISPLAYNAME_PREFIX + ".SliderHandle";
+        Handle = __decorate([
             reactLifecyclesCompat_cjs_1
-        ], ControlGroup);
-        return ControlGroup;
+        ], Handle);
+        return Handle;
     }(AbstractPureComponent2));
 
     /**
-     * A stateful wrapper around the low-level <input> component which works around a
-     * [React bug](https://github.com/facebook/react/issues/3926). This bug is reproduced when an input
-     * receives CompositionEvents (for example, through IME composition) and has its value prop updated
-     * asychronously. This might happen if a component chooses to do async validation of a value
-     * returned by the input's `onChange` callback.
-     *
-     * Note: this component does not apply any Blueprint-specific styling.
+     * SFC used to pass slider handle props to a `MultiSlider`.
+     * This element is not rendered directly.
      */
-    var AsyncControllableInput = /** @class */ (function (_super) {
-        __extends(AsyncControllableInput, _super);
-        function AsyncControllableInput() {
+    var MultiSliderHandle = function () { return null; };
+    MultiSliderHandle.displayName = DISPLAYNAME_PREFIX + ".MultiSliderHandle";
+    var MultiSlider = /** @class */ (function (_super) {
+        __extends(MultiSlider, _super);
+        function MultiSlider() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.state = {
-                hasPendingUpdate: false,
-                isComposing: false,
-                nextValue: _this.props.value,
-                value: _this.props.value,
+                labelPrecision: getLabelPrecision(_this.props),
+                tickSize: 0,
+                tickSizeRatio: 0,
             };
-            _this.handleCompositionStart = function (e) {
+            _this.handleElements = [];
+            _this.trackElement = null;
+            _this.addHandleRef = function (ref) {
+                if (ref != null) {
+                    _this.handleElements.push(ref);
+                }
+            };
+            _this.maybeHandleTrackClick = function (event) {
+                if (_this.canHandleTrackEvent(event)) {
+                    var foundHandle = _this.nearestHandleForValue(_this.handleElements, function (handle) {
+                        return handle.mouseEventClientOffset(event);
+                    });
+                    if (foundHandle) {
+                        foundHandle.beginHandleMovement(event);
+                    }
+                }
+            };
+            _this.maybeHandleTrackTouch = function (event) {
+                if (_this.canHandleTrackEvent(event)) {
+                    var foundHandle = _this.nearestHandleForValue(_this.handleElements, function (handle) {
+                        return handle.touchEventClientOffset(event);
+                    });
+                    if (foundHandle) {
+                        foundHandle.beginHandleTouchMovement(event);
+                    }
+                }
+            };
+            _this.canHandleTrackEvent = function (event) {
+                var target = event.target;
+                // ensure event does not come from inside the handle
+                return !_this.props.disabled && target.closest("." + SLIDER_HANDLE) == null;
+            };
+            _this.getHandlerForIndex = function (index, callback) {
+                return function (newValue) {
+                    callback === null || callback === void 0 ? void 0 : callback(_this.getNewHandleValues(newValue, index));
+                };
+            };
+            _this.handleChange = function (newValues) {
                 var _a, _b;
-                _this.setState({
-                    isComposing: true,
-                    // Make sure that localValue matches externalValue, in case externalValue
-                    // has changed since the last onChange event.
-                    nextValue: _this.state.value,
+                var handleProps = getSortedInteractiveHandleProps(_this.props);
+                var oldValues = handleProps.map(function (handle) { return handle.value; });
+                if (!arraysEqual(newValues, oldValues)) {
+                    (_b = (_a = _this.props).onChange) === null || _b === void 0 ? void 0 : _b.call(_a, newValues);
+                    handleProps.forEach(function (handle, index) {
+                        var _a;
+                        if (oldValues[index] !== newValues[index]) {
+                            (_a = handle.onChange) === null || _a === void 0 ? void 0 : _a.call(handle, newValues[index]);
+                        }
+                    });
+                }
+            };
+            _this.handleRelease = function (newValues) {
+                var _a, _b;
+                var handleProps = getSortedInteractiveHandleProps(_this.props);
+                (_b = (_a = _this.props).onRelease) === null || _b === void 0 ? void 0 : _b.call(_a, newValues);
+                handleProps.forEach(function (handle, index) {
+                    var _a;
+                    (_a = handle.onRelease) === null || _a === void 0 ? void 0 : _a.call(handle, newValues[index]);
                 });
-                (_b = (_a = _this.props).onCompositionStart) === null || _b === void 0 ? void 0 : _b.call(_a, e);
-            };
-            _this.handleCompositionEnd = function (e) {
-                var _a, _b;
-                _this.setState({ isComposing: false });
-                (_b = (_a = _this.props).onCompositionEnd) === null || _b === void 0 ? void 0 : _b.call(_a, e);
-            };
-            _this.handleChange = function (e) {
-                var _a, _b;
-                var value = e.target.value;
-                _this.setState({ nextValue: value });
-                (_b = (_a = _this.props).onChange) === null || _b === void 0 ? void 0 : _b.call(_a, e);
             };
             return _this;
         }
-        AsyncControllableInput.getDerivedStateFromProps = function (nextProps, nextState) {
-            if (nextState.isComposing || nextProps.value === undefined) {
-                // don't derive anything from props if:
-                // - in uncontrolled mode, OR
-                // - currently composing, since we'll do that after composition ends
-                return null;
-            }
-            var userTriggeredUpdate = nextState.nextValue !== nextState.value;
-            if (userTriggeredUpdate) {
-                if (nextProps.value === nextState.nextValue) {
-                    // parent has processed and accepted our update
-                    if (nextState.hasPendingUpdate) {
-                        return { value: nextProps.value, hasPendingUpdate: false };
-                    }
-                    else {
-                        return { value: nextState.nextValue };
-                    }
-                }
-                else {
-                    if (nextProps.value === nextState.value) {
-                        // we have sent the update to our parent, but it has not been processed yet. just wait.
-                        // DO NOT set nextValue here, since that will temporarily render a potentially stale controlled value,
-                        // causing the cursor to jump once the new value is accepted
-                        return { hasPendingUpdate: true };
-                    }
-                    // accept controlled update overriding user action
-                    return { value: nextProps.value, nextValue: nextProps.value, hasPendingUpdate: false };
-                }
-            }
-            else {
-                // accept controlled update, could be confirming or denying user action
-                return { value: nextProps.value, nextValue: nextProps.value, hasPendingUpdate: false };
-            }
+        MultiSlider_1 = MultiSlider;
+        MultiSlider.getDerivedStateFromProps = function (props) {
+            return { labelPrecision: MultiSlider_1.getLabelPrecision(props) };
         };
-        AsyncControllableInput.prototype.render = function () {
-            var _a = this.state, isComposing = _a.isComposing, hasPendingUpdate = _a.hasPendingUpdate, value = _a.value, nextValue = _a.nextValue;
-            var _b = this.props, inputRef = _b.inputRef, restProps = __rest(_b, ["inputRef"]);
-            return (React.createElement("input", __assign({}, restProps, { ref: inputRef, 
-                // render the pending value even if it is not confirmed by a parent's async controlled update
-                // so that the cursor does not jump to the end of input as reported in
-                // https://github.com/palantir/blueprint/issues/4298
-                value: isComposing || hasPendingUpdate ? nextValue : value, onCompositionStart: this.handleCompositionStart, onCompositionEnd: this.handleCompositionEnd, onChange: this.handleChange })));
+        MultiSlider.getLabelPrecision = function (_a) {
+            var labelPrecision = _a.labelPrecision, stepSize = _a.stepSize;
+            // infer default label precision from stepSize because that's how much the handle moves.
+            return labelPrecision == null ? countDecimalPlaces(stepSize) : labelPrecision;
         };
-        AsyncControllableInput.displayName = DISPLAYNAME_PREFIX + ".AsyncControllableInput";
-        AsyncControllableInput = __decorate([
-            reactLifecyclesCompat_cjs_1
-        ], AsyncControllableInput);
-        return AsyncControllableInput;
-    }(React.PureComponent));
-
-    var InputGroup = /** @class */ (function (_super) {
-        __extends(InputGroup, _super);
-        function InputGroup() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.state = {};
-            _this.leftElement = null;
-            _this.rightElement = null;
-            _this.refHandlers = {
-                leftElement: function (ref) { return (_this.leftElement = ref); },
-                rightElement: function (ref) { return (_this.rightElement = ref); },
-            };
-            return _this;
-        }
-        InputGroup.prototype.render = function () {
+        MultiSlider.prototype.getSnapshotBeforeUpdate = function (prevProps) {
+            var prevHandleProps = getSortedInteractiveHandleProps(prevProps);
+            var newHandleProps = getSortedInteractiveHandleProps(this.props);
+            if (newHandleProps.length !== prevHandleProps.length) {
+                // clear refs
+                this.handleElements = [];
+            }
+            return null;
+        };
+        MultiSlider.prototype.render = function () {
             var _a;
-            var _b = this.props, _c = _b.asyncControl, asyncControl = _c === void 0 ? false : _c, className = _b.className, disabled = _b.disabled, fill = _b.fill, inputRef = _b.inputRef, intent = _b.intent, large = _b.large, small = _b.small, round = _b.round;
-            var inputGroupClasses = classnames(INPUT_GROUP, intentClass(intent), (_a = {},
-                _a[DISABLED] = disabled,
-                _a[FILL] = fill,
-                _a[LARGE] = large,
-                _a[SMALL] = small,
-                _a[ROUND] = round,
-                _a), className);
-            var style = __assign(__assign({}, this.props.style), { paddingLeft: this.state.leftElementWidth, paddingRight: this.state.rightElementWidth });
-            var inputProps = __assign(__assign({ type: "text" }, removeNonHTMLProps(this.props)), { className: INPUT, style: style });
-            return (React.createElement("div", { className: inputGroupClasses },
-                this.maybeRenderLeftElement(),
-                asyncControl ? (React.createElement(AsyncControllableInput, __assign({}, inputProps, { inputRef: inputRef }))) : (React.createElement("input", __assign({}, inputProps, { ref: inputRef }))),
-                this.maybeRenderRightElement()));
+            var _this = this;
+            var classes = classnames(SLIDER, (_a = {},
+                _a[DISABLED] = this.props.disabled,
+                _a[SLIDER + "-unlabeled"] = this.props.labelRenderer === false,
+                _a[VERTICAL] = this.props.vertical,
+                _a), this.props.className);
+            return (React.createElement("div", { className: classes, onMouseDown: this.maybeHandleTrackClick, onTouchStart: this.maybeHandleTrackTouch },
+                React.createElement("div", { className: SLIDER_TRACK, ref: function (ref) { return (_this.trackElement = ref); } }, this.renderTracks()),
+                React.createElement("div", { className: SLIDER_AXIS }, this.renderLabels()),
+                this.renderHandles()));
         };
-        InputGroup.prototype.componentDidMount = function () {
-            this.updateInputWidth();
+        MultiSlider.prototype.componentDidMount = function () {
+            this.updateTickSize();
         };
-        InputGroup.prototype.componentDidUpdate = function (prevProps) {
-            var _a = this.props, leftElement = _a.leftElement, rightElement = _a.rightElement;
-            if (prevProps.leftElement !== leftElement || prevProps.rightElement !== rightElement) {
-                this.updateInputWidth();
+        MultiSlider.prototype.componentDidUpdate = function (prevProps, prevState) {
+            _super.prototype.componentDidUpdate.call(this, prevProps, prevState);
+            this.updateTickSize();
+        };
+        MultiSlider.prototype.validateProps = function (props) {
+            if (props.stepSize <= 0) {
+                throw new Error(SLIDER_ZERO_STEP);
+            }
+            if (props.labelStepSize !== undefined && props.labelValues !== undefined) {
+                throw new Error(MULTISLIDER_WARN_LABEL_STEP_SIZE_LABEL_VALUES_MUTEX);
+            }
+            if (props.labelStepSize !== undefined && props.labelStepSize <= 0) {
+                throw new Error(SLIDER_ZERO_LABEL_STEP);
+            }
+            var anyInvalidChildren = false;
+            React.Children.forEach(props.children, function (child) {
+                // allow boolean coercion to omit nulls and false values
+                if (child && !isElementOfType(child, MultiSlider_1.Handle)) {
+                    anyInvalidChildren = true;
+                }
+            });
+            if (anyInvalidChildren) {
+                throw new Error(MULTISLIDER_INVALID_CHILD);
             }
         };
-        InputGroup.prototype.validateProps = function (props) {
-            if (props.leftElement != null && props.leftIcon != null) {
-                console.warn(INPUT_WARN_LEFT_ELEMENT_LEFT_ICON_MUTEX);
-            }
-        };
-        InputGroup.prototype.maybeRenderLeftElement = function () {
-            var _a = this.props, leftElement = _a.leftElement, leftIcon = _a.leftIcon;
-            if (leftElement != null) {
-                return (React.createElement("span", { className: INPUT_LEFT_CONTAINER, ref: this.refHandlers.leftElement }, leftElement));
-            }
-            else if (leftIcon != null) {
-                return React.createElement(Icon, { icon: leftIcon });
-            }
-            return undefined;
-        };
-        InputGroup.prototype.maybeRenderRightElement = function () {
-            var rightElement = this.props.rightElement;
-            if (rightElement == null) {
+        MultiSlider.prototype.formatLabel = function (value, isHandleTooltip) {
+            if (isHandleTooltip === void 0) { isHandleTooltip = false; }
+            var labelRenderer = this.props.labelRenderer;
+            if (labelRenderer === false) {
                 return undefined;
             }
-            return (React.createElement("span", { className: INPUT_ACTION, ref: this.refHandlers.rightElement }, rightElement));
-        };
-        InputGroup.prototype.updateInputWidth = function () {
-            var _a = this.state, leftElementWidth = _a.leftElementWidth, rightElementWidth = _a.rightElementWidth;
-            if (this.leftElement != null) {
-                var clientWidth = this.leftElement.clientWidth;
-                // small threshold to prevent infinite loops
-                if (leftElementWidth === undefined || Math.abs(clientWidth - leftElementWidth) > 2) {
-                    this.setState({ leftElementWidth: clientWidth });
-                }
+            else if (isFunction(labelRenderer)) {
+                return labelRenderer(value, { isHandleTooltip: isHandleTooltip });
             }
             else {
-                this.setState({ leftElementWidth: undefined });
-            }
-            if (this.rightElement != null) {
-                var clientWidth = this.rightElement.clientWidth;
-                // small threshold to prevent infinite loops
-                if (rightElementWidth === undefined || Math.abs(clientWidth - rightElementWidth) > 2) {
-                    this.setState({ rightElementWidth: clientWidth });
-                }
-            }
-            else {
-                this.setState({ rightElementWidth: undefined });
+                return value.toFixed(this.state.labelPrecision);
             }
         };
-        InputGroup.displayName = DISPLAYNAME_PREFIX + ".InputGroup";
-        InputGroup = __decorate([
-            reactLifecyclesCompat_cjs_1
-        ], InputGroup);
-        return InputGroup;
-    }(AbstractPureComponent2));
-
-    /** Returns the `decimal` number separator based on locale */
-    function getDecimalSeparator(locale) {
-        var testNumber = 1.9;
-        var testText = testNumber.toLocaleString(locale);
-        var one = (1).toLocaleString(locale);
-        var nine = (9).toLocaleString(locale);
-        var pattern = one + "(.+)" + nine;
-        var result = new RegExp(pattern).exec(testText);
-        return (result && result[1]) || ".";
-    }
-    function toLocaleString(num, locale) {
-        if (locale === void 0) { locale = "en-US"; }
-        return sanitizeNumericInput(num.toLocaleString(locale), locale);
-    }
-    function clampValue(value, min, max) {
-        // defaultProps won't work if the user passes in null, so just default
-        // to +/- infinity here instead, as a catch-all.
-        var adjustedMin = min != null ? min : -Infinity;
-        var adjustedMax = max != null ? max : Infinity;
-        return clamp(value, adjustedMin, adjustedMax);
-    }
-    function getValueOrEmptyValue(value) {
-        if (value === void 0) { value = ""; }
-        return value.toString();
-    }
-    /** Transform the localized character (ex. "") to a javascript recognizable string number (ex. "10.99")  */
-    function transformLocalizedNumberToStringNumber(character, locale) {
-        var charactersMap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (value) { return value.toLocaleString(locale); });
-        var jsNumber = charactersMap.indexOf(character);
-        if (jsNumber !== -1) {
-            return jsNumber;
-        }
-        else {
-            return character;
-        }
-    }
-    /** Transforms the localized number (ex. "10,99") to a javascript recognizable string number (ex. "10.99")  */
-    function parseStringToStringNumber(value, locale) {
-        var valueAsString = "" + value;
-        if (parseFloat(valueAsString).toString() === value.toString()) {
-            return value.toString();
-        }
-        if (locale !== undefined) {
-            var decimalSeparator = getDecimalSeparator(locale);
-            var sanitizedString = sanitizeNumericInput(valueAsString, locale);
-            return sanitizedString
-                .split("")
-                .map(function (character) { return transformLocalizedNumberToStringNumber(character, locale); })
-                .join("")
-                .replace(decimalSeparator, ".");
-        }
-        return value.toString();
-    }
-    /** Returns `true` if the string represents a valid numeric value, like "1e6". */
-    function isValueNumeric(value, locale) {
-        // checking if a string is numeric in Typescript is a big pain, because
-        // we can't simply toss a string parameter to isFinite. below is the
-        // essential approach that jQuery uses, which involves subtracting a
-        // parsed numeric value from the string representation of the value. we
-        // need to cast the value to the `any` type to allow this operation
-        // between dissimilar types.
-        var stringToStringNumber = parseStringToStringNumber(value, locale);
-        return value != null && stringToStringNumber - parseFloat(stringToStringNumber) + 1 >= 0;
-    }
-    function isValidNumericKeyboardEvent(e, locale) {
-        // unit tests may not include e.key. don't bother disabling those events.
-        if (e.key == null) {
-            return true;
-        }
-        // allow modified key strokes that may involve letters and other
-        // non-numeric/invalid characters (Cmd + A, Cmd + C, Cmd + V, Cmd + X).
-        if (e.ctrlKey || e.altKey || e.metaKey) {
-            return true;
-        }
-        // keys that print a single character when pressed have a `key` name of
-        // length 1. every other key has a longer `key` name (e.g. "Backspace",
-        // "ArrowUp", "Shift"). since none of those keys can print a character
-        // to the field--and since they may have important native behaviors
-        // beyond printing a character--we don't want to disable their effects.
-        var isSingleCharKey = e.key.length === 1;
-        if (!isSingleCharKey) {
-            return true;
-        }
-        // now we can simply check that the single character that wants to be printed
-        // is a floating-point number character that we're allowed to print.
-        return isFloatingPointNumericCharacter(e.key, locale);
-    }
-    /**
-     * A regex that matches a string of length 1 (i.e. a standalone character)
-     * if and only if it is a floating-point number character as defined by W3C:
-     * https://www.w3.org/TR/2012/WD-html-markup-20120329/datatypes.html#common.data.float
-     *
-     * Floating-point number characters are the only characters that can be
-     * printed within a default input[type="number"]. This component should
-     * behave the same way when this.props.allowNumericCharactersOnly = true.
-     * See here for the input[type="number"].value spec:
-     * https://www.w3.org/TR/2012/WD-html-markup-20120329/input.number.html#input.number.attrs.value
-     */
-    function isFloatingPointNumericCharacter(character, locale) {
-        if (locale !== undefined) {
-            var decimalSeparator = getDecimalSeparator(locale).replace(".", "\\.");
-            var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (value) { return value.toLocaleString(locale); }).join("");
-            var localeFloatingPointNumericCharacterRegex = new RegExp("^[Ee" + numbers + "\\+\\-" + decimalSeparator + "]$");
-            return localeFloatingPointNumericCharacterRegex.test(character);
-        }
-        else {
-            var floatingPointNumericCharacterRegex = /^[Ee0-9\+\-\.]$/;
-            return floatingPointNumericCharacterRegex.test(character);
-        }
-    }
-    /**
-     * Round the value to have _up to_ the specified maximum precision.
-     *
-     * This differs from `toFixed(5)` in that trailing zeroes are not added on
-     * more precise values, resulting in shorter strings.
-     */
-    function toMaxPrecision(value, maxPrecision) {
-        // round the value to have the specified maximum precision (toFixed is the wrong choice,
-        // because it would show trailing zeros in the decimal part out to the specified precision)
-        // source: http://stackoverflow.com/a/18358056/5199574
-        var scaleFactor = Math.pow(10, maxPrecision);
-        return Math.round(value * scaleFactor) / scaleFactor;
-    }
-    /**
-     * Convert Japanese full-width numbers, e.g. '５', to ASCII, e.g. '5'
-     * This should be called before performing any other numeric string input validation.
-     */
-    function convertFullWidthNumbersToAscii(value) {
-        return value.replace(/[\uFF10-\uFF19]/g, function (m) { return String.fromCharCode(m.charCodeAt(0) - 0xfee0); });
-    }
-    /**
-     * Convert full-width (Japanese) numbers to ASCII, and strip all characters that are not valid floating-point numeric characters
-     */
-    function sanitizeNumericInput(value, locale) {
-        var valueChars = convertFullWidthNumbersToAscii(value).split("");
-        var sanitizedValueChars = valueChars.filter(function (valueChar) { return isFloatingPointNumericCharacter(valueChar, locale); });
-        return sanitizedValueChars.join("");
-    }
-
-    var IncrementDirection;
-    (function (IncrementDirection) {
-        IncrementDirection[IncrementDirection["DOWN"] = -1] = "DOWN";
-        IncrementDirection[IncrementDirection["UP"] = 1] = "UP";
-    })(IncrementDirection || (IncrementDirection = {}));
-    var NON_HTML_PROPS = [
-        "allowNumericCharactersOnly",
-        "buttonPosition",
-        "clampValueOnBlur",
-        "className",
-        "defaultValue",
-        "majorStepSize",
-        "minorStepSize",
-        "onButtonClick",
-        "onValueChange",
-        "selectAllOnFocus",
-        "selectAllOnIncrement",
-        "stepSize",
-    ];
-    var NumericInput = /** @class */ (function (_super) {
-        __extends(NumericInput, _super);
-        function NumericInput() {
-            var _a;
-            var _this = _super.apply(this, arguments) || this;
-            _this.state = {
-                currentImeInputInvalid: false,
-                shouldSelectAfterUpdate: false,
-                stepMaxPrecision: NumericInput_1.getStepMaxPrecision(_this.props),
-                value: getValueOrEmptyValue((_a = _this.props.value) !== null && _a !== void 0 ? _a : _this.props.defaultValue),
-            };
-            // updating these flags need not trigger re-renders, so don't include them in this.state.
-            _this.didPasteEventJustOccur = false;
-            _this.delta = 0;
-            _this.inputElement = null;
-            _this.inputRef = refHandler(_this, "inputElement", _this.props.inputRef);
-            _this.incrementButtonHandlers = _this.getButtonEventHandlers(IncrementDirection.UP);
-            _this.decrementButtonHandlers = _this.getButtonEventHandlers(IncrementDirection.DOWN);
-            _this.handleButtonClick = function (e, direction) {
-                var _a, _b;
-                var delta = _this.updateDelta(direction, e);
-                var nextValue = _this.incrementValue(delta);
-                (_b = (_a = _this.props).onButtonClick) === null || _b === void 0 ? void 0 : _b.call(_a, Number(parseStringToStringNumber(nextValue, _this.props.locale)), nextValue);
-            };
-            _this.stopContinuousChange = function () {
-                _this.delta = 0;
-                _this.clearTimeouts();
-                clearInterval(_this.intervalId);
-                document.removeEventListener("mouseup", _this.stopContinuousChange);
-            };
-            _this.handleContinuousChange = function () {
-                var _a, _b, _c, _d;
-                // If either min or max prop is set, when reaching the limit
-                // the button will be disabled and stopContinuousChange will be never fired,
-                // hence the need to check on each iteration to properly clear the timeout
-                if (_this.props.min !== undefined || _this.props.max !== undefined) {
-                    var min = (_a = _this.props.min) !== null && _a !== void 0 ? _a : -Infinity;
-                    var max = (_b = _this.props.max) !== null && _b !== void 0 ? _b : Infinity;
-                    var valueAsNumber = Number(parseStringToStringNumber(_this.state.value, _this.props.locale));
-                    if (valueAsNumber <= min || valueAsNumber >= max) {
-                        _this.stopContinuousChange();
-                        return;
-                    }
-                }
-                var nextValue = _this.incrementValue(_this.delta);
-                (_d = (_c = _this.props).onButtonClick) === null || _d === void 0 ? void 0 : _d.call(_c, Number(parseStringToStringNumber(nextValue, _this.props.locale)), nextValue);
-            };
-            // Callbacks - Input
-            // =================
-            _this.handleInputFocus = function (e) {
-                var _a, _b;
-                // update this state flag to trigger update for input selection (see componentDidUpdate)
-                _this.setState({ shouldSelectAfterUpdate: _this.props.selectAllOnFocus });
-                (_b = (_a = _this.props).onFocus) === null || _b === void 0 ? void 0 : _b.call(_a, e);
-            };
-            _this.handleInputBlur = function (e) {
-                var _a, _b;
-                // always disable this flag on blur so it's ready for next time.
-                _this.setState({ shouldSelectAfterUpdate: false });
-                if (_this.props.clampValueOnBlur) {
-                    var value = e.target.value;
-                    _this.handleNextValue(_this.roundAndClampValue(value));
-                }
-                (_b = (_a = _this.props).onBlur) === null || _b === void 0 ? void 0 : _b.call(_a, e);
-            };
-            _this.handleInputKeyDown = function (e) {
-                var _a, _b;
-                if (_this.props.disabled || _this.props.readOnly) {
-                    return;
-                }
-                // eslint-disable-next-line deprecation/deprecation
-                var keyCode = e.keyCode;
-                var direction;
-                if (keyCode === ARROW_UP) {
-                    direction = IncrementDirection.UP;
-                }
-                else if (keyCode === ARROW_DOWN) {
-                    direction = IncrementDirection.DOWN;
-                }
-                if (direction !== undefined) {
-                    // when the input field has focus, some key combinations will modify
-                    // the field's selection range. we'll actually want to select all
-                    // text in the field after we modify the value on the following
-                    // lines. preventing the default selection behavior lets us do that
-                    // without interference.
-                    e.preventDefault();
-                    var delta = _this.updateDelta(direction, e);
-                    _this.incrementValue(delta);
-                }
-                (_b = (_a = _this.props).onKeyDown) === null || _b === void 0 ? void 0 : _b.call(_a, e);
-            };
-            _this.handleCompositionEnd = function (e) {
-                if (_this.props.allowNumericCharactersOnly) {
-                    _this.handleNextValue(sanitizeNumericInput(e.data, _this.props.locale));
-                    _this.setState({ currentImeInputInvalid: false });
-                }
-            };
-            _this.handleCompositionUpdate = function (e) {
-                if (_this.props.allowNumericCharactersOnly) {
-                    var data = e.data;
-                    var sanitizedValue = sanitizeNumericInput(data, _this.props.locale);
-                    if (sanitizedValue.length === 0 && data.length > 0) {
-                        _this.setState({ currentImeInputInvalid: true });
-                    }
-                    else {
-                        _this.setState({ currentImeInputInvalid: false });
-                    }
-                }
-            };
-            _this.handleInputKeyPress = function (e) {
-                var _a, _b;
-                // we prohibit keystrokes in onKeyPress instead of onKeyDown, because
-                // e.key is not trustworthy in onKeyDown in all browsers.
-                if (_this.props.allowNumericCharactersOnly && !isValidNumericKeyboardEvent(e, _this.props.locale)) {
-                    e.preventDefault();
-                }
-                (_b = (_a = _this.props).onKeyPress) === null || _b === void 0 ? void 0 : _b.call(_a, e);
-            };
-            _this.handleInputPaste = function (e) {
-                var _a, _b;
-                _this.didPasteEventJustOccur = true;
-                (_b = (_a = _this.props).onPaste) === null || _b === void 0 ? void 0 : _b.call(_a, e);
-            };
-            _this.handleInputChange = function (e) {
-                var value = e.target.value;
-                var nextValue = value;
-                if (_this.props.allowNumericCharactersOnly && _this.didPasteEventJustOccur) {
-                    _this.didPasteEventJustOccur = false;
-                    nextValue = sanitizeNumericInput(value, _this.props.locale);
-                }
-                _this.handleNextValue(nextValue);
-                _this.setState({ shouldSelectAfterUpdate: false });
-            };
-            return _this;
-        }
-        NumericInput_1 = NumericInput;
-        NumericInput.getDerivedStateFromProps = function (props, state) {
-            var _a, _b;
-            var nextState = {
-                prevMaxProp: props.max,
-                prevMinProp: props.min,
-            };
-            var didMinChange = props.min !== state.prevMinProp;
-            var didMaxChange = props.max !== state.prevMaxProp;
-            var didBoundsChange = didMinChange || didMaxChange;
-            // in controlled mode, use props.value
-            // in uncontrolled mode, if state.value has not been assigned yet (upon initial mount), use props.defaultValue
-            var value = (_b = (_a = props.value) === null || _a === void 0 ? void 0 : _a.toString()) !== null && _b !== void 0 ? _b : state.value;
-            var stepMaxPrecision = NumericInput_1.getStepMaxPrecision(props);
-            var sanitizedValue = value !== NumericInput_1.VALUE_EMPTY
-                ? NumericInput_1.roundAndClampValue(value, stepMaxPrecision, props.min, props.max, 0, props.locale)
-                : NumericInput_1.VALUE_EMPTY;
-            // if a new min and max were provided that cause the existing value to fall
-            // outside of the new bounds, then clamp the value to the new valid range.
-            if (didBoundsChange && sanitizedValue !== state.value) {
-                return __assign(__assign({}, nextState), { stepMaxPrecision: stepMaxPrecision, value: sanitizedValue });
-            }
-            return __assign(__assign({}, nextState), { stepMaxPrecision: stepMaxPrecision, value: value });
-        };
-        // Value Helpers
-        // =============
-        NumericInput.getStepMaxPrecision = function (props) {
-            if (props.minorStepSize != null) {
-                return countDecimalPlaces(props.minorStepSize);
-            }
-            else {
-                return countDecimalPlaces(props.stepSize);
-            }
-        };
-        NumericInput.roundAndClampValue = function (value, stepMaxPrecision, min, max, delta, locale) {
-            if (delta === void 0) { delta = 0; }
-            if (!isValueNumeric(value, locale)) {
-                return NumericInput_1.VALUE_EMPTY;
-            }
-            var currentValue = parseStringToStringNumber(value, locale);
-            var nextValue = toMaxPrecision(Number(currentValue) + delta, stepMaxPrecision);
-            var clampedValue = clampValue(nextValue, min, max);
-            return toLocaleString(clampedValue, locale);
-        };
-        NumericInput.prototype.render = function () {
-            var _a;
-            var _b = this.props, buttonPosition = _b.buttonPosition, className = _b.className, fill = _b.fill, large = _b.large;
-            var containerClasses = classnames(NUMERIC_INPUT, (_a = {}, _a[LARGE] = large, _a), className);
-            var buttons = this.renderButtons();
-            return (React.createElement(ControlGroup, { className: containerClasses, fill: fill },
-                buttonPosition === Position.LEFT && buttons,
-                this.renderInput(),
-                buttonPosition === Position.RIGHT && buttons));
-        };
-        NumericInput.prototype.componentDidUpdate = function (prevProps, prevState) {
-            var _a, _b, _c;
-            _super.prototype.componentDidUpdate.call(this, prevProps, prevState);
-            if (this.state.shouldSelectAfterUpdate) {
-                (_a = this.inputElement) === null || _a === void 0 ? void 0 : _a.setSelectionRange(0, this.state.value.length);
-            }
-            var didMinChange = this.props.min !== prevProps.min;
-            var didMaxChange = this.props.max !== prevProps.max;
-            var didBoundsChange = didMinChange || didMaxChange;
-            var didLocaleChange = this.props.locale !== prevProps.locale;
-            var didValueChange = this.state.value !== prevState.value;
-            if ((didBoundsChange && didValueChange) || (didLocaleChange && prevState.value !== NumericInput_1.VALUE_EMPTY)) {
-                // we clamped the value due to a bounds change, so we should fire the change callback
-                var valueToParse = didLocaleChange ? prevState.value : this.state.value;
-                var valueAsString = parseStringToStringNumber(valueToParse, prevProps.locale);
-                var localizedValue = toLocaleString(+valueAsString, this.props.locale);
-                (_c = (_b = this.props).onValueChange) === null || _c === void 0 ? void 0 : _c.call(_b, +valueAsString, localizedValue, this.inputElement);
-            }
-        };
-        NumericInput.prototype.validateProps = function (nextProps) {
-            var majorStepSize = nextProps.majorStepSize, max = nextProps.max, min = nextProps.min, minorStepSize = nextProps.minorStepSize, stepSize = nextProps.stepSize, value = nextProps.value;
-            if (min != null && max != null && min > max) {
-                console.error(NUMERIC_INPUT_MIN_MAX);
-            }
-            if (stepSize <= 0) {
-                console.error(NUMERIC_INPUT_STEP_SIZE_NON_POSITIVE);
-            }
-            if (minorStepSize && minorStepSize <= 0) {
-                console.error(NUMERIC_INPUT_MINOR_STEP_SIZE_NON_POSITIVE);
-            }
-            if (majorStepSize && majorStepSize <= 0) {
-                console.error(NUMERIC_INPUT_MAJOR_STEP_SIZE_NON_POSITIVE);
-            }
-            if (minorStepSize && minorStepSize > stepSize) {
-                console.error(NUMERIC_INPUT_MINOR_STEP_SIZE_BOUND);
-            }
-            if (majorStepSize && majorStepSize < stepSize) {
-                console.error(NUMERIC_INPUT_MAJOR_STEP_SIZE_BOUND);
-            }
-            // controlled mode
-            if (value != null) {
-                var stepMaxPrecision = NumericInput_1.getStepMaxPrecision(nextProps);
-                var sanitizedValue = NumericInput_1.roundAndClampValue(value.toString(), stepMaxPrecision, min, max, 0, this.props.locale);
-                var valueDoesNotMatch = sanitizedValue !== value.toString();
-                var localizedValue = toLocaleString(Number(parseStringToStringNumber(value, this.props.locale)), this.props.locale);
-                var isNotLocalized = sanitizedValue !== localizedValue;
-                if (valueDoesNotMatch && isNotLocalized) {
-                    console.warn(NUMERIC_INPUT_CONTROLLED_VALUE_INVALID);
-                }
-            }
-        };
-        // Render Helpers
-        // ==============
-        NumericInput.prototype.renderButtons = function () {
-            var _a = this.props, intent = _a.intent, max = _a.max, min = _a.min, locale = _a.locale;
-            var value = parseStringToStringNumber(this.state.value, locale);
-            var disabled = this.props.disabled || this.props.readOnly;
-            var isIncrementDisabled = max !== undefined && value !== "" && +value >= max;
-            var isDecrementDisabled = min !== undefined && value !== "" && +value <= min;
-            return (React.createElement(ButtonGroup, { className: FIXED, key: "button-group", vertical: true },
-                React.createElement(Button, __assign({ disabled: disabled || isIncrementDisabled, icon: "chevron-up", intent: intent }, this.incrementButtonHandlers)),
-                React.createElement(Button, __assign({ disabled: disabled || isDecrementDisabled, icon: "chevron-down", intent: intent }, this.decrementButtonHandlers))));
-        };
-        NumericInput.prototype.renderInput = function () {
-            var inputGroupHtmlProps = removeNonHTMLProps(this.props, NON_HTML_PROPS, true);
-            return (React.createElement(InputGroup, __assign({ asyncControl: this.props.asyncControl, autoComplete: "off" }, inputGroupHtmlProps, { intent: this.state.currentImeInputInvalid ? Intent.DANGER : this.props.intent, inputRef: this.inputRef, large: this.props.large, leftIcon: this.props.leftIcon, onFocus: this.handleInputFocus, onBlur: this.handleInputBlur, onChange: this.handleInputChange, onCompositionEnd: this.handleCompositionEnd, onCompositionUpdate: this.handleCompositionUpdate, onKeyDown: this.handleInputKeyDown, onKeyPress: this.handleInputKeyPress, onPaste: this.handleInputPaste, rightElement: this.props.rightElement, value: this.state.value })));
-        };
-        // Callbacks - Buttons
-        // ===================
-        NumericInput.prototype.getButtonEventHandlers = function (direction) {
+        MultiSlider.prototype.renderLabels = function () {
             var _this = this;
-            return {
-                // keydown is fired repeatedly when held so it's implicitly continuous
-                onKeyDown: function (evt) {
-                    // eslint-disable-next-line deprecation/deprecation
-                    if (!_this.props.disabled && isKeyboardClick(evt.keyCode)) {
-                        _this.handleButtonClick(evt, direction);
-                    }
-                },
-                onMouseDown: function (evt) {
-                    if (!_this.props.disabled) {
-                        _this.handleButtonClick(evt, direction);
-                        _this.startContinuousChange();
-                    }
-                },
-            };
+            if (this.props.labelRenderer === false) {
+                return null;
+            }
+            var values = this.getLabelValues();
+            var _a = this.props, max = _a.max, min = _a.min;
+            var labels = values.map(function (step, i) {
+                var offsetPercentage = formatPercentage((step - min) / (max - min));
+                var style = _this.props.vertical ? { bottom: offsetPercentage } : { left: offsetPercentage };
+                return (React.createElement("div", { className: SLIDER_LABEL, key: i, style: style }, _this.formatLabel(step)));
+            });
+            return labels;
         };
-        NumericInput.prototype.startContinuousChange = function () {
+        MultiSlider.prototype.renderTracks = function () {
+            var trackStops = getSortedHandleProps(this.props);
+            trackStops.push({ value: this.props.max });
+            // render from current to previous, then increment previous
+            var previous = { value: this.props.min };
+            var handles = [];
+            for (var index = 0; index < trackStops.length; index++) {
+                var current = trackStops[index];
+                handles.push(this.renderTrackFill(index, previous, current));
+                previous = current;
+            }
+            return handles;
+        };
+        MultiSlider.prototype.renderTrackFill = function (index, start, end) {
+            // ensure startRatio <= endRatio
+            var _a = [this.getOffsetRatio(start.value), this.getOffsetRatio(end.value)].sort(function (left, right) { return left - right; }), startRatio = _a[0], endRatio = _a[1];
+            var startOffset = formatPercentage(startRatio);
+            var endOffset = formatPercentage(1 - endRatio);
+            var orientationStyle = this.props.vertical
+                ? { bottom: startOffset, top: endOffset, left: 0 }
+                : { left: startOffset, right: endOffset, top: 0 };
+            var style = __assign(__assign({}, orientationStyle), (start.trackStyleAfter || end.trackStyleBefore || {}));
+            var classes = classnames(SLIDER_PROGRESS, intentClass(this.getTrackIntent(start, end)));
+            return React.createElement("div", { key: "track-" + index, className: classes, style: style });
+        };
+        MultiSlider.prototype.renderHandles = function () {
             var _this = this;
-            // The button's onMouseUp event handler doesn't fire if the user
-            // releases outside of the button, so we need to watch all the way
-            // from the top.
-            document.addEventListener("mouseup", this.stopContinuousChange);
-            // Initial delay is slightly longer to prevent the user from
-            // accidentally triggering the continuous increment/decrement.
-            this.setTimeout(function () {
-                _this.intervalId = window.setInterval(_this.handleContinuousChange, NumericInput_1.CONTINUOUS_CHANGE_INTERVAL);
-            }, NumericInput_1.CONTINUOUS_CHANGE_DELAY);
-        };
-        // Data logic
-        // ==========
-        NumericInput.prototype.handleNextValue = function (valueAsString) {
-            var _a, _b;
-            if (this.props.value == null) {
-                this.setState({ value: valueAsString });
+            var _a = this.props, disabled = _a.disabled, max = _a.max, min = _a.min, stepSize = _a.stepSize, vertical = _a.vertical;
+            var handleProps = getSortedInteractiveHandleProps(this.props);
+            if (handleProps.length === 0) {
+                return null;
             }
-            (_b = (_a = this.props).onValueChange) === null || _b === void 0 ? void 0 : _b.call(_a, Number(parseStringToStringNumber(valueAsString, this.props.locale)), valueAsString, this.inputElement);
+            return handleProps.map(function (_a, index) {
+                var _b;
+                var value = _a.value, type = _a.type, className = _a.className;
+                return (React.createElement(Handle, { className: classnames((_b = {},
+                        _b[START] = type === HandleType.START,
+                        _b[END] = type === HandleType.END,
+                        _b), className), disabled: disabled, key: index + "-" + handleProps.length, label: _this.formatLabel(value, true), max: max, min: min, onChange: _this.getHandlerForIndex(index, _this.handleChange), onRelease: _this.getHandlerForIndex(index, _this.handleRelease), ref: _this.addHandleRef, stepSize: stepSize, tickSize: _this.state.tickSize, tickSizeRatio: _this.state.tickSizeRatio, value: value, vertical: vertical }));
+            });
         };
-        NumericInput.prototype.incrementValue = function (delta) {
-            // pretend we're incrementing from 0 if currValue is empty
-            var currValue = this.state.value === NumericInput_1.VALUE_EMPTY ? NumericInput_1.VALUE_ZERO : this.state.value;
-            var nextValue = this.roundAndClampValue(currValue, delta);
-            if (nextValue !== this.state.value) {
-                this.handleNextValue(nextValue);
-                this.setState({ shouldSelectAfterUpdate: this.props.selectAllOnIncrement });
-            }
-            // return value used in continuous change updates
-            return nextValue;
+        MultiSlider.prototype.nearestHandleForValue = function (handles, getOffset) {
+            return argMin(handles, function (handle) {
+                var offset = getOffset(handle);
+                var offsetValue = handle.clientToValue(offset);
+                var handleValue = handle.props.value;
+                return Math.abs(offsetValue - handleValue);
+            });
         };
-        NumericInput.prototype.getIncrementDelta = function (direction, isShiftKeyPressed, isAltKeyPressed) {
-            var _a = this.props, majorStepSize = _a.majorStepSize, minorStepSize = _a.minorStepSize, stepSize = _a.stepSize;
-            if (isShiftKeyPressed && majorStepSize != null) {
-                return direction * majorStepSize;
-            }
-            else if (isAltKeyPressed && minorStepSize != null) {
-                return direction * minorStepSize;
+        MultiSlider.prototype.getNewHandleValues = function (newValue, oldIndex) {
+            var handleProps = getSortedInteractiveHandleProps(this.props);
+            var oldValues = handleProps.map(function (handle) { return handle.value; });
+            var newValues = oldValues.slice();
+            newValues[oldIndex] = newValue;
+            newValues.sort(function (left, right) { return left - right; });
+            var newIndex = newValues.indexOf(newValue);
+            var lockIndex = this.findFirstLockedHandleIndex(oldIndex, newIndex);
+            if (lockIndex === -1) {
+                fillValues(newValues, oldIndex, newIndex, newValue);
             }
             else {
-                return direction * stepSize;
+                // If pushing past a locked handle, discard the new value and only make the updates to clamp values against the lock.
+                var lockValue = oldValues[lockIndex];
+                fillValues(oldValues, oldIndex, lockIndex, lockValue);
+                return oldValues;
+            }
+            return newValues;
+        };
+        MultiSlider.prototype.findFirstLockedHandleIndex = function (startIndex, endIndex) {
+            var inc = startIndex < endIndex ? 1 : -1;
+            var handleProps = getSortedInteractiveHandleProps(this.props);
+            for (var index = startIndex + inc; index !== endIndex + inc; index += inc) {
+                if (handleProps[index].interactionKind !== HandleInteractionKind.PUSH) {
+                    return index;
+                }
+            }
+            return -1;
+        };
+        MultiSlider.prototype.getLabelValues = function () {
+            var _a = this.props, labelStepSize = _a.labelStepSize, labelValues = _a.labelValues, min = _a.min, max = _a.max;
+            var values = [];
+            if (labelValues !== undefined) {
+                values = labelValues;
+            }
+            else {
+                for (var i = min; i < max || approxEqual(i, max); i += labelStepSize !== null && labelStepSize !== void 0 ? labelStepSize : 1) {
+                    values.push(i);
+                }
+            }
+            return values;
+        };
+        MultiSlider.prototype.getOffsetRatio = function (value) {
+            return clamp((value - this.props.min) * this.state.tickSizeRatio, 0, 1);
+        };
+        MultiSlider.prototype.getTrackIntent = function (start, end) {
+            if (!this.props.showTrackFill) {
+                return Intent.NONE;
+            }
+            if (start.intentAfter !== undefined) {
+                return start.intentAfter;
+            }
+            else if (end !== undefined && end.intentBefore !== undefined) {
+                return end.intentBefore;
+            }
+            return this.props.defaultTrackIntent;
+        };
+        MultiSlider.prototype.updateTickSize = function () {
+            if (this.trackElement != null) {
+                var trackSize = this.props.vertical ? this.trackElement.clientHeight : this.trackElement.clientWidth;
+                var tickSizeRatio = 1 / (this.props.max - this.props.min);
+                var tickSize = trackSize * tickSizeRatio;
+                this.setState({ tickSize: tickSize, tickSizeRatio: tickSizeRatio });
             }
         };
-        NumericInput.prototype.roundAndClampValue = function (value, delta) {
-            if (delta === void 0) { delta = 0; }
-            return NumericInput_1.roundAndClampValue(value, this.state.stepMaxPrecision, this.props.min, this.props.max, delta, this.props.locale);
-        };
-        NumericInput.prototype.updateDelta = function (direction, e) {
-            this.delta = this.getIncrementDelta(direction, e.shiftKey, e.altKey);
-            return this.delta;
-        };
-        var NumericInput_1;
-        NumericInput.displayName = DISPLAYNAME_PREFIX + ".NumericInput";
-        NumericInput.VALUE_EMPTY = "";
-        NumericInput.VALUE_ZERO = "0";
-        NumericInput.defaultProps = {
-            allowNumericCharactersOnly: true,
-            buttonPosition: Position.RIGHT,
-            clampValueOnBlur: false,
-            defaultValue: NumericInput_1.VALUE_EMPTY,
-            large: false,
-            majorStepSize: 10,
-            minorStepSize: 0.1,
-            selectAllOnFocus: false,
-            selectAllOnIncrement: false,
+        var MultiSlider_1;
+        MultiSlider.defaultSliderProps = {
+            disabled: false,
+            max: 10,
+            min: 0,
+            showTrackFill: true,
             stepSize: 1,
+            vertical: false,
         };
-        NumericInput.CONTINUOUS_CHANGE_DELAY = 300;
-        NumericInput.CONTINUOUS_CHANGE_INTERVAL = 100;
-        NumericInput = NumericInput_1 = __decorate([
+        MultiSlider.defaultProps = __assign(__assign({}, MultiSlider_1.defaultSliderProps), { defaultTrackIntent: Intent.NONE });
+        MultiSlider.displayName = DISPLAYNAME_PREFIX + ".MultiSlider";
+        MultiSlider.Handle = MultiSliderHandle;
+        MultiSlider = MultiSlider_1 = __decorate([
             reactLifecyclesCompat_cjs_1
-        ], NumericInput);
-        return NumericInput;
+        ], MultiSlider);
+        return MultiSlider;
+    }(AbstractPureComponent2));
+    function getLabelPrecision(_a) {
+        var labelPrecision = _a.labelPrecision, _b = _a.stepSize, stepSize = _b === void 0 ? MultiSlider.defaultSliderProps.stepSize : _b;
+        // infer default label precision from stepSize because that's how much the handle moves.
+        return labelPrecision == null ? countDecimalPlaces(stepSize) : labelPrecision;
+    }
+    function getSortedInteractiveHandleProps(props) {
+        return getSortedHandleProps(props, function (childProps) { return childProps.interactionKind !== HandleInteractionKind.NONE; });
+    }
+    function getSortedHandleProps(_a, predicate) {
+        var children = _a.children;
+        if (predicate === void 0) { predicate = function () { return true; }; }
+        var maybeHandles = React.Children.map(children, function (child) {
+            return isElementOfType(child, MultiSlider.Handle) && predicate(child.props) ? child.props : null;
+        });
+        var handles = maybeHandles != null ? maybeHandles : [];
+        handles = handles.filter(function (handle) { return handle !== null; });
+        handles.sort(function (left, right) { return left.value - right.value; });
+        return handles;
+    }
+
+    var Slider = /** @class */ (function (_super) {
+        __extends(Slider, _super);
+        function Slider() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Slider.prototype.render = function () {
+            var _a = this.props, initialValue = _a.initialValue, intent = _a.intent, value = _a.value, onChange = _a.onChange, onRelease = _a.onRelease, props = __rest(_a, ["initialValue", "intent", "value", "onChange", "onRelease"]);
+            return (React.createElement(MultiSlider, __assign({}, props),
+                React.createElement(MultiSlider.Handle, { value: value, intentAfter: value < initialValue ? intent : undefined, intentBefore: value >= initialValue ? intent : undefined, onChange: onChange, onRelease: onRelease }),
+                React.createElement(MultiSlider.Handle, { value: initialValue, interactionKind: "none" })));
+        };
+        Slider.defaultProps = __assign(__assign({}, MultiSlider.defaultSliderProps), { initialValue: 0, intent: Intent.PRIMARY, value: 0 });
+        Slider.displayName = DISPLAYNAME_PREFIX + ".Slider";
+        Slider = __decorate([
+            reactLifecyclesCompat_cjs_1
+        ], Slider);
+        return Slider;
     }(AbstractPureComponent2));
 
-    var DEFAULT_WIDTH=400;var DEFAULT_HEIGHT=300;var DEFAULT_FPS=10;var MAX_HEIGHT=500;var MIN_HEIGHT=1;var MAX_WIDTH=500;var MIN_WIDTH=1;var MAX_FPS=30;var MIN_FPS=2;
-
-    var PixNFlix=function(_super){__extends(PixNFlix,_super);function PixNFlix(props){var _this=_super.call(this,props)||this;_this.$video=null;_this.$canvas=null;_this.setupVideoService=function(){if(_this.$video&&_this.$canvas){var debuggerContext=_this.props.debuggerContext;_this.pixNFlix=debuggerContext.result.value;var videoProperties=_this.pixNFlix.init(_this.$video,_this.$canvas,_this.printError);_this.setState({height:videoProperties[0],width:videoProperties[1],FPS:videoProperties[2]});}};_this.closeVideo=function(){_this.pixNFlix.deinit();};_this.handleStartVideo=function(){_this.pixNFlix.startVideo();};_this.handleSnapPicture=function(){_this.pixNFlix.snapPicture();};_this.handleWidthChange=function(width){var height=_this.state.height;_this.handleUpdateDimensions(width,height);};_this.handleHeightChange=function(height){var width=_this.state.width;_this.handleUpdateDimensions(width,height);};_this.handleFPSChange=function(fps){if(fps>=MIN_FPS&&fps<=MAX_FPS){_this.setState({FPS:fps});_this.pixNFlix.updateFPS(fps);}};_this.handleUpdateDimensions=function(w,h){if(w>=MIN_WIDTH&&w<=MAX_WIDTH&&h>=MIN_HEIGHT&&h<=MIN_WIDTH){_this.setState({width:w,height:h});_this.pixNFlix.updateDimensions(w,h);}};_this.printError=function(){};_this.swapModes=function(mode){return function(){switch(mode){case"video":_this.setState(function(state){return __assign(__assign({},state),{mode:"still"})},_this.handleSnapPicture);break;default:_this.setState(function(state){return __assign(__assign({},state),{mode:"video"})},_this.handleStartVideo);break;}}};_this.state={width:DEFAULT_WIDTH,height:DEFAULT_HEIGHT,FPS:DEFAULT_FPS,mode:"video"};var debuggerContext=_this.props.debuggerContext;_this.pixNFlix=debuggerContext.result.value;return _this}PixNFlix.prototype.componentDidMount=function(){this.setupVideoService();window.addEventListener("beforeunload",this.pixNFlix.deinit);};PixNFlix.prototype.componentWillUnmount=function(){this.closeVideo();window.removeEventListener("beforeunload",this.pixNFlix.deinit);};PixNFlix.prototype.render=function(){var _this=this;var _a=this.state,mode=_a.mode,width=_a.width,height=_a.height,FPS=_a.FPS;var videoIsActive=mode==="video";var stillIsActive=mode==="still";return React__default['default'].createElement("div",{className:"sa-video"},React__default['default'].createElement("div",{className:"sa-video-header"},React__default['default'].createElement("div",{className:"sa-video-header-element"},React__default['default'].createElement(ButtonGroup,null,React__default['default'].createElement(Button,{className:"sa-live-video-button",icon:VIDEO,active:videoIsActive,onClick:this.swapModes(mode),text:"Live Video"}),React__default['default'].createElement(Button,{className:"sa-still-image-button",icon:CAMERA,active:stillIsActive,onClick:stillIsActive?this.handleSnapPicture:this.swapModes(mode),text:"Still Image"}))),React__default['default'].createElement(Divider,null),React__default['default'].createElement("div",{className:"sa-video-header-element"},React__default['default'].createElement("div",{className:"sa-video-header-numeric-input"},React__default['default'].createElement(NumericInput,{leftIcon:HORIZONTAL_DISTRIBUTION,style:{width:70},value:width,onValueChange:this.handleWidthChange,minorStepSize:1,stepSize:10,majorStepSize:100,max:MAX_WIDTH,min:MIN_WIDTH})),React__default['default'].createElement("div",{className:"sa-video-header-numeric-input"},React__default['default'].createElement(NumericInput,{leftIcon:VERTICAL_DISTRIBUTION,style:{width:70},value:height,onValueChange:this.handleHeightChange,minorStepSize:1,stepSize:10,majorStepSize:100,max:MAX_HEIGHT,min:MIN_HEIGHT})),React__default['default'].createElement("div",{className:"sa-video-header-numeric-input"},React__default['default'].createElement(NumericInput,{leftIcon:STOPWATCH,style:{width:60},value:FPS,onValueChange:this.handleFPSChange,minorStepSize:null,stepSize:1,majorStepSize:null,max:MAX_FPS,min:MIN_FPS})))),React__default['default'].createElement("div",{className:"sa-video-element"},React__default['default'].createElement("video",{ref:function(r){_this.$video=r;},autoPlay:true,id:"livefeed",width:DEFAULT_WIDTH,height:DEFAULT_HEIGHT,style:{display:"none"}}),React__default['default'].createElement("canvas",{ref:function(r){_this.$canvas=r;},width:DEFAULT_WIDTH,height:DEFAULT_HEIGHT}),React__default['default'].createElement("br",null),React__default['default'].createElement("p",{style:{fontFamily:"courier"}},"Note: Is video lagging? Switch to 'still image' or adjust FPS rate!")))};return PixNFlix}(React__default['default'].Component);var index = {toSpawn:function(){return true},body:function(debuggerContext){return React__default['default'].createElement(PixNFlix,{debuggerContext:debuggerContext})},label:"PixNFlix Live Feed",iconName:"mobile-video"};
+    var WebGLCanvas=function(_super){__extends(WebGLCanvas,_super);function WebGLCanvas(props){var _this=_super.call(this,props)||this;_this.$canvas=null;_this.onChangeHandler=function(newValue){_this.setState(function(prevState){return __assign(__assign({},prevState),{rotationAngle:newValue,isRotating:false})},function(){if(_this.$canvas){_this.props.context.result.value.redraw(newValue);}});};_this.onClickHandler=function(){if(_this.$canvas&&!_this.state.isRotating){_this.setState(function(prevState){return __assign(__assign({},prevState),{isRotating:true})},function(){_this.autoRotate();});}};_this.autoRotate=function(){if(_this.$canvas&&_this.state.isRotating){_this.setState(function(prevState){return __assign(__assign({},prevState),{rotationAngle:prevState.rotationAngle>=2*Math.PI?0:prevState.rotationAngle+0.005})},function(){_this.props.context.result.value.redraw(_this.state.rotationAngle);window.requestAnimationFrame(_this.autoRotate);});}};_this.state={rotationAngle:0,isRotating:true,is3D:false};return _this}WebGLCanvas.prototype.componentDidMount=function(){var _this=this;if(this.$canvas){if(this.props.context.result.value.init(this.$canvas)){this.setState(function(prevState){return __assign(__assign({},prevState),{is3D:true})},function(){_this.autoRotate();});}else {this.setState(function(prevState){return __assign(__assign({},prevState),{is3D:false})},function(){_this.props.context.result.value.redraw(_this.state.rotationAngle);});}}};WebGLCanvas.prototype.render=function(){var _this=this;return React__default['default'].createElement("div",{style:{width:"100%",display:"flex",paddingLeft:"20px",paddingRight:"20px",flexDirection:"column",justifyContent:"center"}},React__default['default'].createElement("canvas",{ref:function(r){_this.$canvas=r;},width:500,height:500}),React__default['default'].createElement("div",{style:{display:"flex",padding:"10px",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}},React__default['default'].createElement(Slider,{value:this.state.rotationAngle,stepSize:0.01,labelValues:[0,2*Math.PI],labelRenderer:false,disabled:!this.state.is3D,min:0,max:2*Math.PI,onChange:this.onChangeHandler}),React__default['default'].createElement(Button,{style:{marginLeft:"20px"},disabled:!this.state.is3D,onClick:this.onClickHandler},React__default['default'].createElement(Icon,{icon:"play"}))))};return WebGLCanvas}(React__default['default'].Component);var index = {toSpawn:function(context){function isValidFunction(value){try{return value instanceof Object&&value.init instanceof Function}catch(e){return false}}return isValidFunction(context.result.value)},body:function(context){return React__default['default'].createElement(WebGLCanvas,{context:context})},label:"Curve Canvas",iconName:"media"};
 
     return index;
 

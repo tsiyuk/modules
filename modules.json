@@ -9,9 +9,33 @@
       "Pixnflix"
     ]
   },
-  "curves": {
+  "binary_tree": {
+    "tabs": []
+  },
+  "copy_gc": {
     "tabs": [
-      "Curves"
+      "CopyGc"
+    ]
+  },
+  "curve": {
+    "tabs": [
+      "Curve"
+    ]
+  },
+  "mark_sweep": {
+    "tabs": [
+      "MarkSweep"
+    ]
+  },
+  "sound": {
+    "tabs": [
+      "Sound"
+    ]
+  },
+  "stereo_sound": {
+    "tabs": [
+      "StereoSound"
     ]
   }
+
 }

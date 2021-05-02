@@ -1,0 +1,7136 @@
+{
+	"id": 0,
+	"name": "Source Academy Modules",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 61,
+			"name": "binary_tree",
+			"kind": 1,
+			"kindString": "Module",
+			"flags": {},
+			"comment": {
+				"shortText": "The `binary_tree` Source Module provides functions for the interaction with binary trees, as covered the textbook\n[Structure and Interpretation of Computer Programs, JavaScript Adaptation (SICP JS)](https://sicp.comp.nus.edu.sg/)\nin [section 2.3.3 Example: Representing Sets](https://sicp.comp.nus.edu.sg/chapters/37).\nClick on a name on the left to see how they are defined and used."
+			},
+			"originalName": "binary_tree/functions",
+			"children": [
+				{
+					"id": 62,
+					"name": "make_empty_tree",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "binary_tree/functions.ts",
+							"line": 19,
+							"character": 31
+						}
+					],
+					"signatures": [
+						{
+							"id": 63,
+							"name": "make_empty_tree",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns an empty binary tree, represented by the empty list null",
+								"returns": "An empty binary tree\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```typescript\ndisplay(make_empty_tree()); // Shows \"[]\" in the REPL\n```"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"name": "BinaryTree"
+							}
+						}
+					]
+				},
+				{
+					"id": 64,
+					"name": "make_tree",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "binary_tree/functions.ts",
+							"line": 35,
+							"character": 25
+						}
+					],
+					"signatures": [
+						{
+							"id": 65,
+							"name": "make_tree",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a binary tree node composed of the specified left subtree, value and right subtree.",
+								"returns": "A binary tree\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```typescript\nconst tree = make_tree(1, make_empty_tree(), make_empty_tree());\ndisplay(tree); // Shows \"[null, 1, null]\" in the REPL\n```"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 66,
+									"name": "value",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Value to be stored in the node"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 67,
+									"name": "left",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Left subtree of the node"
+									},
+									"type": {
+										"type": "reference",
+										"name": "BinaryTree"
+									}
+								},
+								{
+									"id": 68,
+									"name": "right",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Right subtree of the node"
+									},
+									"type": {
+										"type": "reference",
+										"name": "BinaryTree"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "BinaryTree"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						62,
+						64
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "binary_tree/functions.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 69,
+			"name": "curve",
+			"kind": 1,
+			"kindString": "Module",
+			"flags": {},
+			"comment": {
+				"shortText": "The curves library provides functions for drawing \"curves\", i.e a sequence of\npoints that may/may not be connected by lines.",
+				"text": "A point is defined by its coordinates (x, y and z), and the color assigned to\nit (r, g, and b). A few constructors for points is given, together with the\ncorresponding selectors for querying the coordinates and color components\nmentioned above.\n\nNaturally, the central element of the library is the definition of Curve, a\nunary function which takes a Number argument within the unit interval `[0,1]`\nand returns a point. If `C` is a Curve, then the starting point of the curve\nis always `C(0)`, and the ending point is always `C(1)`.\n\nA Curve transformation is a function that takes a Curve as argument and\nreturns a Curve. Examples of Curve transformations are `scale` and `translate`.\n\nFinally, a Curve drawer is function that takes a Number argument and returns\na function that takes in a Curve and visualises it in the output screen is\nshown in the Source Academy in the tab with the \"Curves Canvas\" icon (image).\nExamples of drawer functions are `draw_points_on` and `draw_connected`.\n",
+				"tags": [
+					{
+						"tag": "author",
+						"text": "Lee Zheng Han"
+					},
+					{
+						"tag": "author",
+						"text": "Ng Yong Xiang\n"
+					}
+				]
+			},
+			"originalName": "curve/functions",
+			"children": [
+				{
+					"id": 183,
+					"name": "arc",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 721,
+							"character": 19
+						}
+					],
+					"signatures": [
+						{
+							"id": 184,
+							"name": "arc",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a curve: a function from a fraction t to a point. The points\nlie on the right half of the unit circle. They start at Point (0,1) when t is\n0. When t is 0.5, they reach Point (1,0), when t is 1, they reach Point\n(0, -1).",
+								"returns": "Point in the arc at t\n"
+							},
+							"parameters": [
+								{
+									"id": 185,
+									"name": "t",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "fraction between 0 and 1"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Point"
+							}
+						}
+					]
+				},
+				{
+					"id": 139,
+					"name": "b_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 421,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 140,
+							"name": "b_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Retrieves the blue component of a given Point.",
+								"returns": "Blue component of the Point",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_color_point(1, 2, 3, 50, 100, 150);\nb_of(point); // Returns 150\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 141,
+									"name": "pt",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Point"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 170,
+					"name": "connect_ends",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 661,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 171,
+							"name": "connect_ends",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a binary Curve operator: It takes two Curves as arguments\nand returns a new Curve. The two Curves are combined by using the full first\nCurve for the first portion of the result and by using the full second Curve\nfor the second portion of the result. The second Curve is translated such\nthat its point at fraction 0 is the same as the Point of the first Curve at\nfraction 1.",
+								"returns": "result Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 172,
+									"name": "curve1",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "first Curve"
+									},
+									"type": {
+										"type": "reference",
+										"name": "CurveFunction"
+									}
+								},
+								{
+									"id": 173,
+									"name": "curve2",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "second Curve"
+									},
+									"type": {
+										"type": "reference",
+										"name": "CurveFunction"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 166,
+					"name": "connect_rigidly",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 642,
+							"character": 31
+						}
+					],
+					"signatures": [
+						{
+							"id": 167,
+							"name": "connect_rigidly",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a binary Curve operator: It takes two Curves as arguments\nand returns a new Curve. The two Curves are combined by using the full first\nCurve for the first portion of the result and by using the full second Curve\nfor the second portion of the result. The second Curve is not changed, and\ntherefore there might be a big jump in the middle of the result Curve.",
+								"returns": "result Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 168,
+									"name": "curve1",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "first Curve"
+									},
+									"type": {
+										"type": "reference",
+										"name": "CurveFunction"
+									}
+								},
+								{
+									"id": 169,
+									"name": "curve2",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "second Curve"
+									},
+									"type": {
+										"type": "reference",
+										"name": "CurveFunction"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 85,
+					"name": "draw_3D_connected",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 163,
+							"character": 33
+						}
+					],
+					"signatures": [
+						{
+							"id": 86,
+							"name": "draw_3D_connected",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given 3D Curve into a Drawing, by sampling\nthe 3D Curve at `num` sample points and connecting each pair with\na line. When a program evaluates to a Drawing, the Source system displays it\ngraphically, in a window, instead of textually. The parts between (0,0,0) and\n(1,1,1) of the resulting Drawing are shown within the unit cube.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_3D_connected(100)(t => make_3D_point(t, t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 87,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 88,
+					"name": "draw_3D_connected_full_view",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 183,
+							"character": 43
+						}
+					],
+					"signatures": [
+						{
+							"id": 89,
+							"name": "draw_3D_connected_full_view",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given 3D Curve into a Drawing, by sampling\nthe 3D Curve at `num` sample points and connecting each pair with\na line. When a program evaluates to a Drawing, the Source system displays it\ngraphically, in a window, instead of textually. The Drawing is stretched or\nshrunk to show the full curve and maximize its width and height within the\ncube.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_3D_connected_full_view(100)(t => make_3D_point(t, t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 90,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 91,
+					"name": "draw_3D_connected_full_view_proportional",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 202,
+							"character": 56
+						}
+					],
+					"signatures": [
+						{
+							"id": 92,
+							"name": "draw_3D_connected_full_view_proportional",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given 3D Curve into a Drawing, by sampling\nthe 3D Curve at `num` sample points and connecting each pair with\na line. When a program evaluates to a Drawing, the Source system displays it\ngraphically, in a window, instead of textually. The Drawing is scaled\nproportionally with its size maximized to fit entirely inside the cube.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_3D_connected_full_view(100)(t => make_3D_point(t, t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 93,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 97,
+					"name": "draw_3D_points_full_view_proportional",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 244,
+							"character": 53
+						}
+					],
+					"signatures": [
+						{
+							"id": 98,
+							"name": "draw_3D_points_full_view_proportional",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given 3D Curve into a Drawing, by sampling\nthe 3D Curve at `num` sample points. The Drawing consists of\nisolated points, and does not connect them. When a program evaluates to a\nDrawing, the Source system displays it graphically, in a window, instead of\ntextually. The Drawing is scaled proportionally with its size maximized to\nfit entirely inside the cube.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_3D_connected_full_view_proportional(100)(t => make_3D_point(t, t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 99,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 94,
+					"name": "draw_3D_points_on",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 224,
+							"character": 33
+						}
+					],
+					"signatures": [
+						{
+							"id": 95,
+							"name": "draw_3D_points_on",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given 3D Curve into a Drawing, by sampling\nthe 3D Curve at `num` sample points. The Drawing consists of\nisolated points, and does not connect them. When a program evaluates to a\nDrawing, the Source system displays it graphically, in a window, instead of\ntextually. The parts between (0,0,0) and (1,1,1) of the resulting Drawing are\nshown within the unit cube.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_3D_points_on(100)(t => make_3D_point(t, t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 96,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 70,
+					"name": "draw_connected",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 60,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 71,
+							"name": "draw_connected",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given Curve into a Drawing, by sampling the\nCurve at `num` sample points and connecting each pair with a line.\nWhen a program evaluates to a Drawing, the Source system displays it\ngraphically, in a window, instead of textually. The parts between (0,0) and\n(1,1) of the resulting Drawing are shown in the window.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_connected(100)(t => make_point(t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 72,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 73,
+					"name": "draw_connected_full_view",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 80,
+							"character": 40
+						}
+					],
+					"signatures": [
+						{
+							"id": 74,
+							"name": "draw_connected_full_view",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given Curve into a Drawing, by sampling the\nCurve at `num` sample points and connecting each pair with a line.\nWhen a program evaluates to a Drawing, the Source system displays it\ngraphically, in a window, instead of textually. The Drawing is stretched or\nshrunk to show the full curve and maximize its width and height, with some\npadding.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_connected_full_view(100)(t => make_point(t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 75,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 76,
+					"name": "draw_connected_full_view_proportional",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 100,
+							"character": 53
+						}
+					],
+					"signatures": [
+						{
+							"id": 77,
+							"name": "draw_connected_full_view_proportional",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given Curve into a Drawing, by sampling the\nCurve at `num` sample points and connecting each pair with a line.\nWhen a program evaluates to a Drawing, the Source system displays it\ngraphically, in a window, instead of textually. The Drawing is scaled\nproportionally to show the full curve and maximize its size, with some\npadding.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_connected_full_view_proportional(100)(t => make_point(t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 78,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 82,
+					"name": "draw_points_full_view_proportional",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 142,
+							"character": 50
+						}
+					],
+					"signatures": [
+						{
+							"id": 83,
+							"name": "draw_points_full_view_proportional",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given Curve into a Drawing, by sampling the\nCurve at `num` sample points. The Drawing consists of isolated\npoints, and does not connect them. When a program evaluates to a Drawing, the\nSource system displays it graphically, in a window, instead of textually. The\nDrawing is scaled proportionally with its size maximized to fit entirely\ninside the window, with some padding.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_points_full_view_proportional(100)(t => make_point(t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 84,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1, there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 79,
+					"name": "draw_points_on",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 122,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 80,
+							"name": "draw_points_on",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a function that turns a given Curve into a Drawing, by sampling the\nCurve at `num` sample points. The Drawing consists of isolated\npoints, and does not connect them. When a program evaluates to a Drawing,\nthe Source system displays it graphically, in a window, instead of textually.\nThe parts between (0,0) and (1,1) of the resulting Drawing are shown in the\nwindow.",
+								"returns": "function of type Curve → Drawing",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\ndraw_points_on(100)(t => make_point(t, t));\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 81,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "determines the number of points, lower than 65535, to be sampled.\nIncluding 0 and 1,there are `num + 1` evenly spaced sample points"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "RenderFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 136,
+					"name": "g_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 406,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 137,
+							"name": "g_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Retrieves the green component of a given Point.",
+								"returns": "Green component of the Point",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_color_point(1, 2, 3, 50, 100, 150);\ng_of(point); // Returns 100\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 138,
+									"name": "pt",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Point"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 142,
+					"name": "invert",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 434,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 143,
+							"name": "invert",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a Curve transformation: a function from a Curve to a Curve.\nThe points of the result Curve are the same points as the points of the\noriginal Curve, but in reverse: The result Curve applied to 0 is the original\nCurve applied to 1 and vice versa.",
+								"returns": "result Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 144,
+									"name": "curve",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CurveFunction"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 116,
+					"name": "make_3D_color_point",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 324,
+							"character": 35
+						}
+					],
+					"signatures": [
+						{
+							"id": 117,
+							"name": "make_3D_color_point",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a 3D color Point with given x, y and z coordinates, and RGB values\nranging from 0 to 255. Any input lower than 0 for RGB will be rounded up to\n0, and any input higher than 255 will be rounded down to 255.",
+								"returns": "with x, y and z as coordinates, and r, g and b as RGB values",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst redPoint = make_color_point(0.5, 0.5, 0.5, 255, 0, 0);\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 118,
+									"name": "x",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "x-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 119,
+									"name": "y",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "y-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 120,
+									"name": "z",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "z-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 121,
+									"name": "r",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "red component of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 122,
+									"name": "g",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "green component of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 123,
+									"name": "b",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "blue component of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Point"
+							}
+						}
+					]
+				},
+				{
+					"id": 104,
+					"name": "make_3D_point",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 277,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 105,
+							"name": "make_3D_point",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a 3D Point with given x, y and z coordinates.",
+								"returns": "with x, y and z as coordinates",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_3D_point(0.5, 0.5, 0.5);\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 106,
+									"name": "x",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "x-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 107,
+									"name": "y",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "y-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 108,
+									"name": "z",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "z-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Point"
+							}
+						}
+					]
+				},
+				{
+					"id": 109,
+					"name": "make_color_point",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 297,
+							"character": 32
+						}
+					],
+					"signatures": [
+						{
+							"id": 110,
+							"name": "make_color_point",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a color Point with given x and y coordinates, and RGB values ranging\nfrom 0 to 255. Any input lower than 0 for RGB will be rounded up to 0, and\nany input higher than 255 will be rounded down to 255.",
+								"returns": "with x and y as coordinates, and r, g and b as RGB values",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst redPoint = make_color_point(0.5, 0.5, 255, 0, 0);\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 111,
+									"name": "x",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "x-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 112,
+									"name": "y",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "y-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 113,
+									"name": "r",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "red component of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 114,
+									"name": "g",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "green component of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 115,
+									"name": "b",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "blue component of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Point"
+							}
+						}
+					]
+				},
+				{
+					"id": 100,
+					"name": "make_point",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 261,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 101,
+							"name": "make_point",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a Point with given x and y coordinates.",
+								"returns": "with x and y as coordinates",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_point(0.5, 0.5);\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 102,
+									"name": "x",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "x-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 103,
+									"name": "y",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "y-coordinate of new point"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Point"
+							}
+						}
+					]
+				},
+				{
+					"id": 163,
+					"name": "put_in_standard_position",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 613,
+							"character": 40
+						}
+					],
+					"signatures": [
+						{
+							"id": 164,
+							"name": "put_in_standard_position",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a Curve transformation: It takes a Curve as argument and\nreturns a new Curve, as follows. A Curve is in standard position if it\nstarts at (0,0) ends at (1,0). This function puts the given Curve in\nstandard position by rigidly translating it so its start Point is at the\norigin (0,0), then rotating it about the origin to put its endpoint on the\nx axis, then scaling it to put the endpoint at (1,0). Behavior is unspecified\non closed Curves where start-point equal end-point.",
+								"returns": "result Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 165,
+									"name": "curve",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given Curve"
+									},
+									"type": {
+										"type": "reference",
+										"name": "CurveFunction"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 133,
+					"name": "r_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 391,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 134,
+							"name": "r_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Retrieves the red component of a given Point.",
+								"returns": "Red component of the Point",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_color_point(1, 2, 3, 50, 100, 150);\nr_of(point); // Returns 50\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 135,
+									"name": "pt",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Point"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 150,
+					"name": "rotate_around_origin",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 487,
+							"character": 36
+						}
+					],
+					"signatures": [
+						{
+							"id": 151,
+							"name": "rotate_around_origin",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function takes either 1 or 3 angles, a, b and c in radians as parameter\nand returns a Curve transformation: a function that takes a Curve as argument\nand returns a new Curve, which is the original Curve rotated by the given\nangle around the z-axis (1 parameter) in counter-clockwise direction, or the\noriginal Curve rotated extrinsically with Euler angles (a, b, c) about x, y,\nand z axes (3 parameters).",
+								"returns": "function that takes a Curve and returns a Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 152,
+									"name": "theta1",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 153,
+									"name": "theta2",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 154,
+									"name": "theta3",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 155,
+					"name": "scale",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 570,
+							"character": 21
+						}
+					],
+					"signatures": [
+						{
+							"id": 156,
+							"name": "scale",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function takes scaling factors `a`, `b` and\n`c`, each with default value of 1, as arguments and returns a\nCurve transformation that scales a given Curve by `a` in\nx-direction, `b` in y-direction and `c` in z-direction.",
+								"returns": "function that takes a Curve and returns a Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 157,
+									"name": "a",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "(Optional) scaling factor in x-direction"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 158,
+									"name": "b",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "(Optional) scaling factor in y-direction"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 159,
+									"name": "c",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "(Optional) scaling factor in z-direction"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 160,
+					"name": "scale_proportional",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 597,
+							"character": 34
+						}
+					],
+					"signatures": [
+						{
+							"id": 161,
+							"name": "scale_proportional",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function takes a scaling factor s argument and returns a Curve\ntransformation that scales a given Curve by s in x, y and z direction.",
+								"returns": "function that takes a Curve and returns a Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 162,
+									"name": "s",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "scaling factor"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 145,
+					"name": "translate",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 450,
+							"character": 25
+						}
+					],
+					"signatures": [
+						{
+							"id": 146,
+							"name": "translate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function returns a Curve transformation: It takes an x-value x0, a\ny-value y0 and a z-value z0, each with default value of 0, as arguments and\nreturns a Curve transformation that takes a Curve as argument and returns a\nnew Curve, by translating the original by x0 in x-direction, y0 in\ny-direction and z0 in z-direction.",
+								"returns": "Curve transformation\n"
+							},
+							"parameters": [
+								{
+									"id": 147,
+									"name": "x0",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "(Optional) x-value"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 148,
+									"name": "y0",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "(Optional) y-value"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 149,
+									"name": "z0",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "(Optional) z-value"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 174,
+					"name": "unit_circle",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 685,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 175,
+							"name": "unit_circle",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a curve: a function from a fraction t to a point. The points\nlie on the unit circle. They start at Point (1,0) when t is 0. When t is\n0.25, they reach Point (0,1), when t is 0.5, they reach Point (-1, 0), etc.",
+								"returns": "Point on the circle at t\n"
+							},
+							"parameters": [
+								{
+									"id": 176,
+									"name": "t",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "fraction between 0 and 1"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Point"
+							}
+						}
+					]
+				},
+				{
+					"id": 177,
+					"name": "unit_line",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 696,
+							"character": 25
+						}
+					],
+					"signatures": [
+						{
+							"id": 178,
+							"name": "unit_line",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a curve: a function from a fraction t to a point. The\nx-coordinate at franction t is t, and the y-coordinate is 0.",
+								"returns": "Point on the line at t\n"
+							},
+							"parameters": [
+								{
+									"id": 179,
+									"name": "t",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "fraction between 0 and 1"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Point"
+							}
+						}
+					]
+				},
+				{
+					"id": 180,
+					"name": "unit_line_at",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 708,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 181,
+							"name": "unit_line_at",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "This function is a Curve generator: it takes a number and returns a\nhorizontal curve. The number is a y-coordinate, and the Curve generates only\npoints with the given y-coordinate.",
+								"returns": "horizontal Curve\n"
+							},
+							"parameters": [
+								{
+									"id": 182,
+									"name": "t",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "fraction between 0 and 1"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CurveFunction"
+							}
+						}
+					]
+				},
+				{
+					"id": 124,
+					"name": "x_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 346,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 125,
+							"name": "x_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Retrieves the x-coordinate of a given Point.",
+								"returns": "x-coordinate of the Point",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_color_point(1, 2, 3, 50, 100, 150);\nx_of(point); // Returns 1\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 126,
+									"name": "pt",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Point"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 127,
+					"name": "y_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 361,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 128,
+							"name": "y_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Retrieves the y-coordinate of a given Point.",
+								"returns": "y-coordinate of the Point",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_color_point(1, 2, 3, 50, 100, 150);\ny_of(point); // Returns 2\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 129,
+									"name": "pt",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Point"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 130,
+					"name": "z_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "curve/functions.ts",
+							"line": 376,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 131,
+							"name": "z_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Retrieves the z-coordinate of a given Point.",
+								"returns": "z-coordinate of the Point",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```\nconst point = make_color_point(1, 2, 3, 50, 100, 150);\nz_of(point); // Returns 3\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 132,
+									"name": "pt",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Point"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						183,
+						139,
+						170,
+						166,
+						85,
+						88,
+						91,
+						97,
+						94,
+						70,
+						73,
+						76,
+						82,
+						79,
+						136,
+						142,
+						116,
+						104,
+						109,
+						100,
+						163,
+						133,
+						150,
+						155,
+						160,
+						145,
+						174,
+						177,
+						180,
+						124,
+						127,
+						130
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "curve/functions.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 12,
+			"name": "pix_n_flix",
+			"kind": 1,
+			"kindString": "Module",
+			"flags": {},
+			"comment": {
+				"shortText": "The pix_n_flix library allows us to process still images and video. Each Image is a\ntwo-dimensional array of Pixels, and a Pixel consists of red, blue and green color\nvalues, each ranging from 0 and 255. To access these color values of a Pixel, we\nprovide the functions red_of, blue_of and green_of.",
+				"text": "A central element of pix_n_flix is the notion of a Filter, a function that is applied\nto two images: the source Image and the destination Image. We can install a given\nFilter to be used to transform the Images that the camera captures into images\ndisplayed on the output screen by using the function install_filter. The output\nscreen is shown in the Source Academy in the tab with the \"Video Display\" icon (camera).\n\nThe size of the output screen can be changed by the user. To access the current size of the\noutput screen, we provide the functions video_height and video_width.\n"
+			},
+			"originalName": "pix_n_flix/functions",
+			"children": [
+				{
+					"id": 24,
+					"name": "alpha_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 410,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 25,
+							"name": "alpha_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the alpha component of a given Pixel.",
+								"returns": "The alpha component as a number between 0 and 255\n"
+							},
+							"parameters": [
+								{
+									"id": 26,
+									"name": "pixel",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Given Pixel"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Pixel"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 21,
+					"name": "blue_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 399,
+							"character": 23
+						}
+					],
+					"signatures": [
+						{
+							"id": 22,
+							"name": "blue_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the blue component of a given Pixel.",
+								"returns": "The blue component as a number between 0 and 255\n"
+							},
+							"parameters": [
+								{
+									"id": 23,
+									"name": "pixel",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Given Pixel"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Pixel"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 47,
+					"name": "compose_filter",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 509,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 48,
+							"name": "compose_filter",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a new filter that is the result of applying both\nfilter1 and filter2 together.",
+								"returns": "Filter after applying filter1 and filter2\n"
+							},
+							"parameters": [
+								{
+									"id": 49,
+									"name": "filter1",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "First filter"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Filter"
+									}
+								},
+								{
+									"id": 50,
+									"name": "filter2",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Second filter"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Filter"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Filter"
+							}
+						}
+					]
+				},
+				{
+					"id": 38,
+					"name": "copy_image",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 470,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 39,
+							"name": "copy_image",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "The default filter that just copies the input 2D\ngrid to output."
+							},
+							"parameters": [
+								{
+									"id": 40,
+									"name": "src",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "2D input src of pixels"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Pixels"
+									}
+								},
+								{
+									"id": 41,
+									"name": "dest",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "2D output src of pixels\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Pixels"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 18,
+					"name": "green_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 388,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 19,
+							"name": "green_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the green component of a given Pixel.",
+								"returns": "The green component as a number between 0 and 255\n"
+							},
+							"parameters": [
+								{
+									"id": 20,
+									"name": "pixel",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Given Pixel"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Pixel"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 42,
+					"name": "install_filter",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 490,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 43,
+							"name": "install_filter",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Installs a given filter to be used to transform\nthe images that the camera captures into images\ndisplayed on the screen.",
+								"text": "A filter is a function that is applied to two\ntwo-dimensional arrays of Pixels:\nthe source image and the destination image.\n"
+							},
+							"parameters": [
+								{
+									"id": 44,
+									"name": "_filter",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Filter"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 15,
+					"name": "red_of",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 377,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 16,
+							"name": "red_of",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the red component of a given Pixel.",
+								"returns": "The red component as a number between 0 and 255\n"
+							},
+							"parameters": [
+								{
+									"id": 17,
+									"name": "pixel",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Given Pixel"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Pixel"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 45,
+					"name": "reset_filter",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 497,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 46,
+							"name": "reset_filter",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Resets any filter applied on the video."
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 54,
+					"name": "set_dimensions",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 534,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 55,
+							"name": "set_dimensions",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets height of video frame.\nNote: Only accepts height and width within the range of 1 and 500."
+							},
+							"parameters": [
+								{
+									"id": 56,
+									"name": "width",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Width of video (Default value of 300)"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 57,
+									"name": "height",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Height of video (Default value of 400)\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 58,
+					"name": "set_fps",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 544,
+							"character": 23
+						}
+					],
+					"signatures": [
+						{
+							"id": 59,
+							"name": "set_fps",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets frames per second (FPS) of the video.\nNote: Only accepts FPS values within the range of 2 to 30."
+							},
+							"parameters": [
+								{
+									"id": 60,
+									"name": "fps",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "FPS of video (Default value of 10)\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 27,
+					"name": "set_rgba",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 425,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 28,
+							"name": "set_rgba",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Assigns the red, green, blue and alpha components of a pixel\nto given values."
+							},
+							"parameters": [
+								{
+									"id": 29,
+									"name": "pixel",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Given Pixel"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Pixel"
+									}
+								},
+								{
+									"id": 30,
+									"name": "r",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The red component as a number between 0 and 255"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 31,
+									"name": "g",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The green component as a number between 0 and 255"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 32,
+									"name": "b",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The blue component as a number between 0 and 255"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 33,
+									"name": "a",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The alpha component as a number between 0 and 255\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 51,
+					"name": "snapshot",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 522,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 52,
+							"name": "snapshot",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Takes a snapshot of image after a set delay."
+							},
+							"parameters": [
+								{
+									"id": 53,
+									"name": "delay",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Delay in ms before a snapshot is taken\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 13,
+					"name": "start",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 359,
+							"character": 21
+						}
+					],
+					"signatures": [
+						{
+							"id": 14,
+							"name": "start",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Initialize the PixNFlix live feed with default globals."
+							},
+							"type": {
+								"type": "reference",
+								"name": "Video"
+							}
+						}
+					]
+				},
+				{
+					"id": 34,
+					"name": "video_height",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 449,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 35,
+							"name": "video_height",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the current height of the output video display in\npixels, i.e. the number of pixels in vertical direction.",
+								"returns": "height of output display (in pixels)\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 36,
+					"name": "video_width",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "pix_n_flix/functions.ts",
+							"line": 459,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 37,
+							"name": "video_width",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the current width of the output video display in\npixels, i.e. the number of pixels in horizontal direction.",
+								"returns": "Width of output display (in pixels)\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						24,
+						21,
+						47,
+						38,
+						18,
+						42,
+						15,
+						45,
+						54,
+						58,
+						27,
+						51,
+						13,
+						34,
+						36
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "pix_n_flix/functions.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "repeat",
+			"kind": 1,
+			"kindString": "Module",
+			"flags": {},
+			"comment": {
+				"shortText": "This is the official documentation for the repeat module."
+			},
+			"originalName": "repeat/functions",
+			"children": [
+				{
+					"id": 2,
+					"name": "repeat",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "repeat/functions.ts",
+							"line": 18,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 3,
+							"name": "repeat",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a new function which when applied to an argument, has the same effect\nas applying the specified function to the same argument n times.",
+								"returns": "the new function that has the same effect as func repeated n times\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```typescript\nconst plusFour = repeat(x => x + 2);\nplusFour(0); // Returns 4\n```"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 4,
+									"name": "func",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the function to be repeated"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Function"
+									}
+								},
+								{
+									"id": 5,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the number of times to repeat the function"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Function"
+							}
+						}
+					]
+				},
+				{
+					"id": 9,
+					"name": "thrice",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "repeat/functions.ts",
+							"line": 48,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 10,
+							"name": "thrice",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a new function which when applied to an argument, has the same effect\nas applying the specified function to the same argument 3 times.",
+								"returns": "the new function that has the same effect as `(x => func(func(func(x))))`\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```typescript\nconst plusNine = thrice(x => x + 3);\nplusNine(0); // Returns 9\n```"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 11,
+									"name": "func",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the function to be repeated"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Function"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Function"
+							}
+						}
+					]
+				},
+				{
+					"id": 6,
+					"name": "twice",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "repeat/functions.ts",
+							"line": 33,
+							"character": 21
+						}
+					],
+					"signatures": [
+						{
+							"id": 7,
+							"name": "twice",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a new function which when applied to an argument, has the same effect\nas applying the specified function to the same argument 2 times.",
+								"returns": "the new function that has the same effect as `(x => func(func(x)))`\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```typescript\nconst plusTwo = twice(x => x + 1);\nplusTwo(2); // Returns 4\n```"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 8,
+									"name": "func",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the function to be repeated"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Function"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Function"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						2,
+						9,
+						6
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "repeat/functions.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 186,
+			"name": "sound",
+			"kind": 1,
+			"kindString": "Module",
+			"flags": {},
+			"comment": {
+				"shortText": "The sounds library provides functions for constructing and playing sounds.",
+				"text": "A wave is a function that takes in a number `t` and returns\na number representing the amplitude at time `t`.\nThe amplitude should fall within the range of [-1, 1].\n\nA Sound is a pair(wave, duration) where duration is the length of the sound in seconds.\nThe constructor make_sound and accessors get_wave and get_duration are provided.\n\nSound Discipline:\nFor all sounds, the wave function applied to and time `t` beyond its duration returns 0, that is:\n`(get_wave(sound))(get_duration(sound) + x) === 0` for any x >= 0.\n\nTwo functions which combine Sounds, `consecutively` and `simultaneously` are given.\nAdditionally, we provide sound transformation functions `adsr` and `phase_mod`\nwhich take in a Sound and return a Sound.\n\nFinally, the provided `play` function takes in a Sound and plays it using your\ncomputer's sound system.\n",
+				"tags": [
+					{
+						"tag": "author",
+						"text": "Koh Shang Hui"
+					},
+					{
+						"tag": "author",
+						"text": "Samyukta Sounderraman\n"
+					}
+				]
+			},
+			"originalName": "sound/functions",
+			"children": [
+				{
+					"id": 251,
+					"name": "adsr",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 634,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 252,
+							"name": "adsr",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns an envelope: a function from Sound to Sound.\nWhen the adsr envelope is applied to a Sound, it returns\na new Sound with its amplitude modified according to parameters\nThe relative amplitude increases from 0 to 1 linearly over the\nattack proportion, then decreases from 1 to sustain level over the\ndecay proportion, and remains at that level until the release\nproportion when it decays back to 0.",
+								"returns": "Envelope a function from Sound to Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "adsr(0.2, 0.3, 0.3, 0.1)(sound);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 253,
+									"name": "attack_ratio",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "proportion of Sound in attack phase"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 254,
+									"name": "decay_ratio",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "proportion of Sound decay phase"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 255,
+									"name": "sustain_level",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "sustain level between 0 and 1"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 256,
+									"name": "release_ratio",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "proportion of Sound in release phase"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SoundTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 277,
+					"name": "bell",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 832,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 278,
+							"name": "bell",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a bell, playing\na given note for a given duration",
+								"returns": "Sound resulting bell Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "bell(40, 1);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 279,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 280,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 281,
+					"name": "cello",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 854,
+							"character": 21
+						}
+					],
+					"signatures": [
+						{
+							"id": 282,
+							"name": "cello",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a cello, playing\na given note for a given duration",
+								"returns": "Sound resulting cello Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "cello(36, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 283,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 284,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 245,
+					"name": "consecutively",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 579,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 246,
+							"name": "consecutively",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a new Sound by combining the sounds in a given list\nwhere the second sound is appended to the end of the first sound,\nthe third sound is appended to the end of the second sound, and\nso on. The effect is that the sounds in the list are joined end-to-end",
+								"returns": "the combined Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "consecutively(list(sine_sound(200, 2), sine_sound(400, 3)));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 247,
+									"name": "list_of_sounds",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given list of sounds"
+									},
+									"type": {
+										"type": "reference",
+										"name": "List"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 209,
+					"name": "get_duration",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 284,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 210,
+							"name": "get_duration",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Accesses the duration of a given Sound.",
+								"returns": "the duration of the Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "get_duration(make_sound(t => Math_sin(2 * Math_PI * 440 * t), 5)); // Returns 5\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 211,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 206,
+					"name": "get_wave",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 273,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 207,
+							"name": "get_wave",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Accesses the wave function of a given Sound.",
+								"returns": "the wave function of the Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "get_wave(make_sound(t => Math_sin(2 * Math_PI * 440 * t), 5)); // Returns t => Math_sin(2 * Math_PI * 440 * t)\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 208,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Wave"
+							}
+						}
+					]
+				},
+				{
+					"id": 187,
+					"name": "init_record",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 163,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 188,
+							"name": "init_record",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Initialize recording by obtaining permission\nto use the default device microphone",
+								"returns": "string \"obtaining recording permission\"\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					]
+				},
+				{
+					"id": 212,
+					"name": "is_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 295,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 213,
+							"name": "is_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Checks if the argument is a Sound",
+								"returns": "true if x is a Sound, false otherwise",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "is_sound(make_sound(t => 0, 2)); // Returns true\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 214,
+									"name": "x",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "input to be checked"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					]
+				},
+				{
+					"id": 274,
+					"name": "letter_name_to_frequency",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 818,
+							"character": 40
+						}
+					],
+					"signatures": [
+						{
+							"id": 275,
+							"name": "letter_name_to_frequency",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Converts a letter name to its corresponding frequency.",
+								"returns": "the corresponding frequency",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "letter_name_to_frequency(\"A4\"); // Returns 440\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 276,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 268,
+					"name": "letter_name_to_midi_note",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 747,
+							"character": 40
+						}
+					],
+					"signatures": [
+						{
+							"id": 269,
+							"name": "letter_name_to_midi_note",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Converts a letter name to its corresponding MIDI note.\nThe letter name is represented in standard pitch notation.\nExamples are \"A5\", \"Db3\", \"C#7\".\nRefer to <a href=\"https://i.imgur.com/qGQgmYr.png\">this mapping from\nletter name to midi notes.",
+								"returns": "the corresponding midi note",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "letter_name_to_midi_note(\"C4\"); // Returns 60\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 270,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 202,
+					"name": "make_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 262,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 203,
+							"name": "make_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a Sound with given wave function and duration.\nThe wave function is a function: number -> number\nthat takes in a non-negative input time and returns an amplitude\nbetween -1 and 1.",
+								"returns": "with wave as wave function and duration as duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "const s = make_sound(t => Math_sin(2 * Math_PI * 440 * t), 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 204,
+									"name": "wave",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "wave function of the sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Wave"
+									}
+								},
+								{
+									"id": 205,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration of the sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 271,
+					"name": "midi_note_to_frequency",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 806,
+							"character": 38
+						}
+					],
+					"signatures": [
+						{
+							"id": 272,
+							"name": "midi_note_to_frequency",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Converts a MIDI note to its corresponding frequency.",
+								"returns": "the frequency of the MIDI note",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "midi_note_to_frequency(69); // Returns 440\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 273,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 223,
+					"name": "noise_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 472,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 224,
+							"name": "noise_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a noise sound with given duration",
+								"returns": "resulting noise sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "noise_sound(5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 225,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the noise sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 263,
+					"name": "phase_mod",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 722,
+							"character": 25
+						}
+					],
+					"signatures": [
+						{
+							"id": 264,
+							"name": "phase_mod",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a SoundTransformer which uses its argument\nto modulate the phase of a (carrier) sine wave\nof given frequency and duration with a given Sound.\nModulating with a low frequency Sound results in a vibrato effect.\nModulating with a Sound with frequencies comparable to\nthe sine wave frequency results in more complex wave forms.",
+								"returns": "function which takes in a Sound and returns a Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "phase_mod(440, 5, 1)(sine_sound(220, 5));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 265,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the sine wave to be modulated"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 266,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the output soud"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 267,
+									"name": "amount",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the amount of modulation to apply to the carrier sine wave"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SoundTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 285,
+					"name": "piano",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 871,
+							"character": 21
+						}
+					],
+					"signatures": [
+						{
+							"id": 286,
+							"name": "piano",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a piano, playing\na given note for a given duration",
+								"returns": "Sound resulting piano Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "piano(48, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 287,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 288,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 215,
+					"name": "play",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 311,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 216,
+							"name": "play",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Plays the given Sound using the computer’s sound device.\nThe sound is only played if no other sounds are currently being played.",
+								"returns": "the given sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "play(sine_sound(440, 5));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 217,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the sound to play"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "AudioPlayed"
+							}
+						}
+					]
+				},
+				{
+					"id": 218,
+					"name": "play_concurrently",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 397,
+							"character": 33
+						}
+					],
+					"signatures": [
+						{
+							"id": 219,
+							"name": "play_concurrently",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Plays the given Sound using the computer’s sound device\non top of any sounds that are currently playing.",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "play_concurrently(sine_sound(440, 5));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 220,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the sound to play"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 189,
+					"name": "record",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 186,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 190,
+							"name": "record",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "takes a <CODE>buffer</CODE> duration (in seconds) as argument, and\nreturns a nullary stop function <CODE>stop</CODE>. A call\n<CODE>stop()</CODE> returns a sound promise: a nullary function\nthat returns a sound. Example: <PRE><CODE>init_record();\nconst stop = record(0.5);\n// record after 0.5 seconds. Then in next query:\nconst promise = stop();\n// In next query, you can play the promised sound, by\n// applying the promise:\nplay(promise());</CODE></PRE>",
+								"returns": "nullary <CODE>stop</CODE> function;\n<CODE>stop()</CODE> stops the recording and\nreturns a sound promise: a nullary function that returns the recorded sound\n"
+							},
+							"parameters": [
+								{
+									"id": 191,
+									"name": "buffer",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "pause before recording, in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 192,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "sound/functions.ts",
+											"line": 186,
+											"character": 39
+										}
+									],
+									"signatures": [
+										{
+											"id": 193,
+											"name": "__type",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"type": {
+												"type": "reflection",
+												"declaration": {
+													"id": 194,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "sound/functions.ts",
+															"line": 186,
+															"character": 45
+														}
+													],
+													"signatures": [
+														{
+															"id": 195,
+															"name": "__type",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"type": {
+																"type": "reference",
+																"name": "Sound"
+															}
+														}
+													]
+												}
+											}
+										}
+									]
+								}
+							}
+						}
+					]
+				},
+				{
+					"id": 196,
+					"name": "record_for",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 219,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 197,
+							"name": "record_for",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Records a sound of given <CODE>duration</CODE> in seconds, after\na <CODE>buffer</CODE> also in seconds, and\nreturns a sound promise: a nullary function\nthat returns a sound. Example: <PRE><CODE>init_record();\nconst promise = record_for(2, 0.5);\n// In next query, you can play the promised sound, by\n// applying the promise:\nplay(promise());</CODE></PRE>",
+								"returns": "<CODE>promise</CODE>: nullary function which returns the recorded sound\n"
+							},
+							"parameters": [
+								{
+									"id": 198,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 199,
+									"name": "buffer",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "pause before recording, in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 200,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "sound/functions.ts",
+											"line": 219,
+											"character": 61
+										}
+									],
+									"signatures": [
+										{
+											"id": 201,
+											"name": "__type",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sound"
+											}
+										}
+									]
+								}
+							}
+						}
+					]
+				},
+				{
+					"id": 241,
+					"name": "sawtooth_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 553,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 242,
+							"name": "sawtooth_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a sawtooth wave sound with given frequency and duration",
+								"returns": "resulting sawtooth wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "sawtooth_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 243,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the sawtooth wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 244,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the sawtooth wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 226,
+					"name": "silence_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 483,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 227,
+							"name": "silence_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a silence sound with given duration",
+								"returns": "resulting silence sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "silence_sound(5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 228,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the silence sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 248,
+					"name": "simultaneously",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 599,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 249,
+							"name": "simultaneously",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a new Sound by combining the sounds in a given list\nwhere all the sounds are overlapped on top of each other.",
+								"returns": "the combined Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "simultaneously(list(sine_sound(200, 2), sine_sound(400, 3)))\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 250,
+									"name": "list_of_sounds",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given list of sounds"
+									},
+									"type": {
+										"type": "reference",
+										"name": "List"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 229,
+					"name": "sine_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 495,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 230,
+							"name": "sine_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a sine wave sound with given frequency and duration",
+								"returns": "resulting sine wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "sine_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 231,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the sine wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 232,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the sine wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 233,
+					"name": "square_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 507,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 234,
+							"name": "square_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a square wave sound with given frequency and duration",
+								"returns": "resulting square wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "square_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 235,
+									"name": "f",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 236,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the square wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 257,
+					"name": "stacking_adsr",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 685,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 258,
+							"name": "stacking_adsr",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a Sound that results from applying a list of envelopes\nto a given wave form. The wave form is a Sound generator that\ntakes a frequency and a duration as arguments and produces a\nSound with the given frequency and duration. Each envelope is\napplied to a harmonic: the first harmonic has the given frequency,\nthe second has twice the frequency, the third three times the\nfrequency etc. The harmonics are then layered simultaneously to\nproduce the resulting Sound.",
+								"returns": "Sound resulting Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "stacking_adsr(sine_sound, 300, 5, list(adsr(0.1, 0.3, 0.2, 0.5), adsr(0.2, 0.5, 0.6, 0.1), adsr(0.3, 0.1, 0.7, 0.3)));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 259,
+									"name": "waveform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "function from pair(frequency, duration) to Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "SoundProducer"
+									}
+								},
+								{
+									"id": 260,
+									"name": "base_frequency",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "frequency of the first harmonic"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 261,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration of the produced Sound, in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 262,
+									"name": "envelopes",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "– list of envelopes, which are functions from Sound to Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "List"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 221,
+					"name": "stop",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 458,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 222,
+							"name": "stop",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Stops all currently playing sounds."
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 237,
+					"name": "triangle_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 529,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 238,
+							"name": "triangle_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a triangle wave sound with given frequency and duration",
+								"returns": "resulting triangle wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "triangle_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 239,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the triangle wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 240,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the triangle wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 289,
+					"name": "trombone",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 888,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 290,
+							"name": "trombone",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a trombone, playing\na given note for a given duration",
+								"returns": "Sound resulting trombone Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "trombone(60, 2);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 291,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 292,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 293,
+					"name": "violin",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "sound/functions.ts",
+							"line": 905,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 294,
+							"name": "violin",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a violin, playing\na given note for a given duration",
+								"returns": "Sound resulting violin Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "violin(53, 4);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 295,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 296,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						251,
+						277,
+						281,
+						245,
+						209,
+						206,
+						187,
+						212,
+						274,
+						268,
+						202,
+						271,
+						223,
+						263,
+						285,
+						215,
+						218,
+						189,
+						196,
+						241,
+						226,
+						248,
+						229,
+						233,
+						257,
+						221,
+						237,
+						289,
+						293
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "sound/functions.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 297,
+			"name": "stereo_sound",
+			"kind": 1,
+			"kindString": "Module",
+			"flags": {},
+			"comment": {
+				"shortText": "The stereo sounds library build on the sounds library by accommodating stereo sounds.\nWithin this library, all sounds are represented in stereo, with two waves, left and right.",
+				"text": "A Stereo Sound is a `pair(pair(left_wave, right_wave), duration)` where duration is the length of the sound in seconds.\nThe constructor `make_stereo_sound` and accessors `get_left_wave`, `get_right_wave`, and `get_duration` are provided.\nThe `make_sound` constructor from sounds is syntatic sugar for `make_stereo_sounds` with equal waves.\n",
+				"tags": [
+					{
+						"tag": "author",
+						"text": "Koh Shang Hui"
+					},
+					{
+						"tag": "author",
+						"text": "Samyukta Sounderraman\n"
+					}
+				]
+			},
+			"originalName": "stereo_sound/functions",
+			"children": [
+				{
+					"id": 379,
+					"name": "adsr",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 802,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 380,
+							"name": "adsr",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns an envelope: a function from Sound to Sound.\nWhen the adsr envelope is applied to a Sound, it returns\na new Sound with its amplitude modified according to parameters\nThe relative amplitude increases from 0 to 1 linearly over the\nattack proportion, then decreases from 1 to sustain level over the\ndecay proportion, and remains at that level until the release\nproportion when it decays back to 0.",
+								"returns": "Envelope a function from Sound to Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "adsr(0.2, 0.3, 0.3, 0.1)(sound);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 381,
+									"name": "attack_ratio",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "proportion of Sound in attack phase"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 382,
+									"name": "decay_ratio",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "proportion of Sound decay phase"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 383,
+									"name": "sustain_level",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "sustain level between 0 and 1"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 384,
+									"name": "release_ratio",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "proportion of Sound in release phase"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SoundTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 405,
+					"name": "bell",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 1010,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 406,
+							"name": "bell",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a bell, playing\na given note for a given duration",
+								"returns": "Sound resulting bell Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "bell(40, 1);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 407,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 408,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 409,
+					"name": "cello",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 1032,
+							"character": 21
+						}
+					],
+					"signatures": [
+						{
+							"id": 410,
+							"name": "cello",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a cello, playing\na given note for a given duration",
+								"returns": "Sound resulting cello Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "cello(36, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 411,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 412,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 373,
+					"name": "consecutively",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 736,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 374,
+							"name": "consecutively",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a new Sound by combining the sounds in a given list\nwhere the second sound is appended to the end of the first sound,\nthe third sound is appended to the end of the second sound, and\nso on. The effect is that the sounds in the list are joined end-to-end",
+								"returns": "the combined Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "consecutively(list(sine_sound(200, 2), sine_sound(400, 3)));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 375,
+									"name": "list_of_sounds",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given list of sounds"
+									},
+									"type": {
+										"type": "reference",
+										"name": "List"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 328,
+					"name": "get_duration",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 314,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 329,
+							"name": "get_duration",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Accesses the duration of a given Sound.",
+								"returns": "the duration of the Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "get_duration(make_sound(t => Math_sin(2 * Math_PI * 440 * t), 5)); // Returns 5\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 330,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 322,
+					"name": "get_left_wave",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 292,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 323,
+							"name": "get_left_wave",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Accesses the left wave function of a given Sound.",
+								"returns": "the wave function of the Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "get_wave(make_sound(t => Math_sin(2 * Math_PI * 440 * t), 5)); // Returns t => Math_sin(2 * Math_PI * 440 * t)\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 324,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Wave"
+							}
+						}
+					]
+				},
+				{
+					"id": 325,
+					"name": "get_right_wave",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 303,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 326,
+							"name": "get_right_wave",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Accesses the left wave function of a given Sound.",
+								"returns": "the wave function of the Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "get_wave(make_sound(t => Math_sin(2 * Math_PI * 440 * t), 5)); // Returns t => Math_sin(2 * Math_PI * 440 * t)\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 327,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Wave"
+							}
+						}
+					]
+				},
+				{
+					"id": 298,
+					"name": "init_record",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 152,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 299,
+							"name": "init_record",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Initialize recording by obtaining permission\nto use the default device microphone",
+								"returns": "string \"obtaining recording permission\"\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					]
+				},
+				{
+					"id": 331,
+					"name": "is_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 325,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 332,
+							"name": "is_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Checks if the argument is a Sound",
+								"returns": "true if x is a Sound, false otherwise",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "is_sound(make_sound(t => 0, 2)); // Returns true\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 333,
+									"name": "x",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "input to be checked"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					]
+				},
+				{
+					"id": 402,
+					"name": "letter_name_to_frequency",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 996,
+							"character": 40
+						}
+					],
+					"signatures": [
+						{
+							"id": 403,
+							"name": "letter_name_to_frequency",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Converts a letter name to its corresponding frequency.",
+								"returns": "the corresponding frequency",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "letter_name_to_frequency(\"A4\"); // Returns 440\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 404,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 396,
+					"name": "letter_name_to_midi_note",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 925,
+							"character": 40
+						}
+					],
+					"signatures": [
+						{
+							"id": 397,
+							"name": "letter_name_to_midi_note",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Converts a letter name to its corresponding MIDI note.\nThe letter name is represented in standard pitch notation.\nExamples are \"A5\", \"Db3\", \"C#7\".\nRefer to <a href=\"https://i.imgur.com/qGQgmYr.png\">this mapping from\nletter name to midi notes.",
+								"returns": "the corresponding midi note",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "letter_name_to_midi_note(\"C4\"); // Returns 60\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 398,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 318,
+					"name": "make_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 277,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 319,
+							"name": "make_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a Sound with given wave function and duration.\nThe wave function is a function: number -> number\nthat takes in a non-negative input time and returns an amplitude\nbetween -1 and 1.",
+								"returns": "with wave as wave function and duration as duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "const s = make_sound(t => Math_sin(2 * Math_PI * 440 * t), 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 320,
+									"name": "wave",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "wave function of the sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Wave"
+									}
+								},
+								{
+									"id": 321,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration of the sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 313,
+					"name": "make_stereo_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 252,
+							"character": 33
+						}
+					],
+					"signatures": [
+						{
+							"id": 314,
+							"name": "make_stereo_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a Stereo Sound with given wave function and duration.\nThe wave function is a function: number -> number\nthat takes in a non-negative input time and returns an amplitude\nbetween -1 and 1.",
+								"returns": "resulting stereo sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "const s = make_stereo_sound(t => Math_sin(2 * Math_PI * 440 * t), t => Math_sin(2 * Math_PI * 300 * t), 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 315,
+									"name": "left_wave",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "wave function of the left channel of the sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Wave"
+									}
+								},
+								{
+									"id": 316,
+									"name": "right_wave",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "wave function of the right channel of the sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Wave"
+									}
+								},
+								{
+									"id": 317,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration of the sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 399,
+					"name": "midi_note_to_frequency",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 984,
+							"character": 38
+						}
+					],
+					"signatures": [
+						{
+							"id": 400,
+							"name": "midi_note_to_frequency",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Converts a MIDI note to its corresponding frequency.",
+								"returns": "the frequency of the MIDI note",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "midi_note_to_frequency(69); // Returns 440\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 401,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 351,
+					"name": "noise_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 629,
+							"character": 27
+						}
+					],
+					"signatures": [
+						{
+							"id": 352,
+							"name": "noise_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a noise sound with given duration",
+								"returns": "resulting noise sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "noise_sound(5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 353,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the noise sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 345,
+					"name": "pan",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 569,
+							"character": 19
+						}
+					],
+					"signatures": [
+						{
+							"id": 346,
+							"name": "pan",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a Sound Transformer that pans a sound based on the pan amount.\nThe input sound is first squashed to mono.\nAn amount of `-1` is a hard left pan, `0` is balanced, `1` is hard right pan.",
+								"returns": "a Sound Transformer that pans a Sound\n"
+							},
+							"parameters": [
+								{
+									"id": 347,
+									"name": "amount",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the pan amount, from -1 to 1"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SoundTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 348,
+					"name": "pan_mod",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 598,
+							"character": 23
+						}
+					],
+					"signatures": [
+						{
+							"id": 349,
+							"name": "pan_mod",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a Sound Transformer that uses a Sound to pan another Sound.\nThe modulator is treated as a mono sound and its output is used to pan\nan input Sound.\n`-1` is a hard left pan, `0` is balanced, `1` is hard right pan.",
+								"returns": "a Sound Transformer that pans a Sound\n"
+							},
+							"parameters": [
+								{
+									"id": 350,
+									"name": "modulator",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the Sound used to modulate the pan of another sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SoundTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 391,
+					"name": "phase_mod",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 895,
+							"character": 25
+						}
+					],
+					"signatures": [
+						{
+							"id": 392,
+							"name": "phase_mod",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a SoundTransformer which uses its argument\nto modulate the phase of a (carrier) sine wave\nof given frequency and duration with a given Sound.\nModulating with a low frequency Sound results in a vibrato effect.\nModulating with a Sound with frequencies comparable to\nthe sine wave frequency results in more complex wave forms.",
+								"returns": "function which takes in a Sound and returns a Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "phase_mod(440, 5, 1)(sine_sound(220, 5));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 393,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the sine wave to be modulated"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 394,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the output soud"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 395,
+									"name": "amount",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the amount of modulation to apply to the carrier sine wave"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SoundTransformer"
+							}
+						}
+					]
+				},
+				{
+					"id": 413,
+					"name": "piano",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 1049,
+							"character": 21
+						}
+					],
+					"signatures": [
+						{
+							"id": 414,
+							"name": "piano",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a piano, playing\na given note for a given duration",
+								"returns": "Sound resulting piano Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "piano(48, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 415,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 416,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 334,
+					"name": "play",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 342,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 335,
+							"name": "play",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Plays the given Sound using the computer’s sound device.\nThe sound is only played if no other sounds are currently being played.",
+								"returns": "the given sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "play(sine_sound(440, 5));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 336,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the sound to play"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "AudioPlayed"
+							}
+						}
+					]
+				},
+				{
+					"id": 337,
+					"name": "play_concurrently",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 452,
+							"character": 33
+						}
+					],
+					"signatures": [
+						{
+							"id": 338,
+							"name": "play_concurrently",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Plays the given Sound using the computer’s sound device\non top of any sounds that are currently playing.",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "play_concurrently(sine_sound(440, 5));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 339,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the sound to play"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 300,
+					"name": "record",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 175,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 301,
+							"name": "record",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "takes a <CODE>buffer</CODE> duration (in seconds) as argument, and\nreturns a nullary stop function <CODE>stop</CODE>. A call\n<CODE>stop()</CODE> returns a sound promise: a nullary function\nthat returns a sound. Example: <PRE><CODE>init_record();\nconst stop = record(0.5);\n// record after 0.5 seconds. Then in next query:\nconst promise = stop();\n// In next query, you can play the promised sound, by\n// applying the promise:\nplay(promise());</CODE></PRE>",
+								"returns": "nullary <CODE>stop</CODE> function;\n<CODE>stop()</CODE> stops the recording and\nreturns a sound promise: a nullary function that returns the recorded sound\n"
+							},
+							"parameters": [
+								{
+									"id": 302,
+									"name": "buffer",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "pause before recording, in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 303,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "stereo_sound/functions.ts",
+											"line": 175,
+											"character": 39
+										}
+									],
+									"signatures": [
+										{
+											"id": 304,
+											"name": "__type",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"type": {
+												"type": "reflection",
+												"declaration": {
+													"id": 305,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "stereo_sound/functions.ts",
+															"line": 175,
+															"character": 45
+														}
+													],
+													"signatures": [
+														{
+															"id": 306,
+															"name": "__type",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"type": {
+																"type": "reference",
+																"name": "Sound"
+															}
+														}
+													]
+												}
+											}
+										}
+									]
+								}
+							}
+						}
+					]
+				},
+				{
+					"id": 307,
+					"name": "record_for",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 208,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 308,
+							"name": "record_for",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Records a sound of given <CODE>duration</CODE> in seconds, after\na <CODE>buffer</CODE> also in seconds, and\nreturns a sound promise: a nullary function\nthat returns a sound. Example: <PRE><CODE>init_record();\nconst promise = record_for(2, 0.5);\n// In next query, you can play the promised sound, by\n// applying the promise:\nplay(promise());</CODE></PRE>",
+								"returns": "<CODE>promise</CODE>: nullary function which returns the recorded sound\n"
+							},
+							"parameters": [
+								{
+									"id": 309,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 310,
+									"name": "buffer",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "pause before recording, in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 311,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "stereo_sound/functions.ts",
+											"line": 208,
+											"character": 61
+										}
+									],
+									"signatures": [
+										{
+											"id": 312,
+											"name": "__type",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Sound"
+											}
+										}
+									]
+								}
+							}
+						}
+					]
+				},
+				{
+					"id": 369,
+					"name": "sawtooth_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 710,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 370,
+							"name": "sawtooth_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a sawtooth wave sound with given frequency and duration",
+								"returns": "resulting sawtooth wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "sawtooth_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 371,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the sawtooth wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 372,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the sawtooth wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 354,
+					"name": "silence_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 640,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 355,
+							"name": "silence_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a silence sound with given duration",
+								"returns": "resulting silence sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "silence_sound(5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 356,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the silence sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 376,
+					"name": "simultaneously",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 759,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 377,
+							"name": "simultaneously",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a new Sound by combining the sounds in a given list\nwhere all the sounds are overlapped on top of each other.",
+								"returns": "the combined Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "simultaneously(list(sine_sound(200, 2), sine_sound(400, 3)))\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 378,
+									"name": "list_of_sounds",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "given list of sounds"
+									},
+									"type": {
+										"type": "reference",
+										"name": "List"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 357,
+					"name": "sine_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 652,
+							"character": 26
+						}
+					],
+					"signatures": [
+						{
+							"id": 358,
+							"name": "sine_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a sine wave sound with given frequency and duration",
+								"returns": "resulting sine wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "sine_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 359,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the sine wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 360,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the sine wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 361,
+					"name": "square_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 664,
+							"character": 28
+						}
+					],
+					"signatures": [
+						{
+							"id": 362,
+							"name": "square_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a square wave sound with given frequency and duration",
+								"returns": "resulting square wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "square_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 363,
+									"name": "f",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 364,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the square wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 342,
+					"name": "squash",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 555,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 343,
+							"name": "squash",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Centers a Sound by averaging its left and right channels,\nresulting in an effectively mono sound.",
+								"returns": "a new sound with the left and right channels averaged\n"
+							},
+							"parameters": [
+								{
+									"id": 344,
+									"name": "sound",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the sound to be squashed"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Sound"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 385,
+					"name": "stacking_adsr",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 858,
+							"character": 29
+						}
+					],
+					"signatures": [
+						{
+							"id": 386,
+							"name": "stacking_adsr",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns a Sound that results from applying a list of envelopes\nto a given wave form. The wave form is a Sound generator that\ntakes a frequency and a duration as arguments and produces a\nSound with the given frequency and duration. Each envelope is\napplied to a harmonic: the first harmonic has the given frequency,\nthe second has twice the frequency, the third three times the\nfrequency etc. The harmonics are then layered simultaneously to\nproduce the resulting Sound.",
+								"returns": "Sound resulting Sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "stacking_adsr(sine_sound, 300, 5, list(adsr(0.1, 0.3, 0.2, 0.5), adsr(0.2, 0.5, 0.6, 0.1), adsr(0.3, 0.1, 0.7, 0.3)));\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 387,
+									"name": "waveform",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "function from pair(frequency, duration) to Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "SoundProducer"
+									}
+								},
+								{
+									"id": 388,
+									"name": "base_frequency",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "frequency of the first harmonic"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 389,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration of the produced Sound, in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 390,
+									"name": "envelopes",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "– list of envelopes, which are functions from Sound to Sound"
+									},
+									"type": {
+										"type": "reference",
+										"name": "List"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 340,
+					"name": "stop",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 541,
+							"character": 20
+						}
+					],
+					"signatures": [
+						{
+							"id": 341,
+							"name": "stop",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Stops all currently playing sounds."
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 365,
+					"name": "triangle_sound",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 686,
+							"character": 30
+						}
+					],
+					"signatures": [
+						{
+							"id": 366,
+							"name": "triangle_sound",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Makes a triangle wave sound with given frequency and duration",
+								"returns": "resulting triangle wave sound",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "triangle_sound(440, 5);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 367,
+									"name": "freq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the frequency of the triangle wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 368,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "the duration of the triangle wave sound"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 417,
+					"name": "trombone",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 1066,
+							"character": 24
+						}
+					],
+					"signatures": [
+						{
+							"id": 418,
+							"name": "trombone",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a trombone, playing\na given note for a given duration",
+								"returns": "Sound resulting trombone Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "trombone(60, 2);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 419,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 420,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				},
+				{
+					"id": 421,
+					"name": "violin",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "stereo_sound/functions.ts",
+							"line": 1083,
+							"character": 22
+						}
+					],
+					"signatures": [
+						{
+							"id": 422,
+							"name": "violin",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "returns a Sound reminiscent of a violin, playing\na given note for a given duration",
+								"returns": "Sound resulting violin Sound with given pitch and duration",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "violin(53, 4);\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 423,
+									"name": "note",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "MIDI note"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 424,
+									"name": "duration",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "duration in seconds"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Sound"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						379,
+						405,
+						409,
+						373,
+						328,
+						322,
+						325,
+						298,
+						331,
+						402,
+						396,
+						318,
+						313,
+						399,
+						351,
+						345,
+						348,
+						391,
+						413,
+						334,
+						337,
+						300,
+						307,
+						369,
+						354,
+						376,
+						357,
+						361,
+						342,
+						385,
+						340,
+						365,
+						417,
+						421
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "stereo_sound/functions.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Modules",
+			"kind": 1,
+			"children": [
+				61,
+				69,
+				12,
+				1,
+				186,
+				297
+			]
+		}
+	]
+}
