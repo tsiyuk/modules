@@ -27,6 +27,9 @@
       "MarkSweep"
     ]
   },
+  "scrabble": {
+    "tabs": []
+  },
   "sound": {
     "tabs": [
       "Sound"
@@ -35,6 +38,11 @@
   "stereo_sound": {
     "tabs": [
       "StereoSound"
+    ]
+  },
+  "game": {
+    "tabs": [
+      "Game"
     ]
   }
 
